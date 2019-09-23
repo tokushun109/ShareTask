@@ -9,10 +9,10 @@ class UsersController < ApplicationController
     
     if @user.save
       flash[:success] = 'ユーザーを登録しました'
-       redirect_to root_url
+       redirect_to groups_url
       
     else
-      flash.now[:danger] = 'ユーザーを登録に失敗しました'
+      flash.now[:danger] = 'ユーザー登録に失敗しました'
       render :new
     end
     
