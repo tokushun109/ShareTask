@@ -6,4 +6,6 @@ class User < ApplicationRecord
     has_secure_password
     
     has_many :groups
+    # クラスはGroupで外部キーをleader_userに設定
+    has_many :leader_groups, class_name:'Group' , foreign_key: :leader_user
 end

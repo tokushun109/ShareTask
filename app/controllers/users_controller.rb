@@ -23,6 +23,12 @@ class UsersController < ApplicationController
 
   def update
   end
+  
+  def search
+    @search = User.ransack(params[:q])
+    @users = @search.result
+  end
+  
 end
 
 private

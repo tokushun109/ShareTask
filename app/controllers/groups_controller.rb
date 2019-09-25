@@ -8,12 +8,13 @@ class GroupsController < ApplicationController
 
   def create
     # group_paramsをストロングパラメータで定義する必要あり
-    @group = current_user.groups.build(group_params)
+    @group = current_user.leader_groups.build(group_params)
+    # @group = Group.new(group_params)
     
     if @group.save
       flash[:success] = '新しいグループを作成しました'
       # 後ほどgroups_urlに飛ばせるようにする
-      redirect_to root_url
+      redirect_to groups_url
     
     else
       flash.now[:danger] = 'グループを作成出来ませんでした'
@@ -26,5 +27,3 @@ end
   def group_params
     params.require(:group).permit(:name)
   end
-  
-
