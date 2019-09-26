@@ -14,7 +14,7 @@ class GroupsController < ApplicationController
     if @group.save
       flash[:success] = '新しいグループを作成しました'
       # 後ほどgroups_urlに飛ばせるようにする
-      redirect_to groups_url
+      redirect_to search_users_url
     
     else
       flash.now[:danger] = 'グループを作成出来ませんでした'

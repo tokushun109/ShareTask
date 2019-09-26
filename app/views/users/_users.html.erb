@@ -16,10 +16,10 @@
             <th>ユーザーネーム</th>
             <th>氏名</th>
         </tr>
-        <% @users.each do |user| %>
+        <% users.each do |user| %>
         <tr>
-                <td><%= user.user_name %></td>
-                <td><%= user.name %></td>
+            <td><%= user.user_name %></td>
+            <td><%= user.name %></td>
         </tr>
         <% end %>
     </table>
