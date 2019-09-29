@@ -15,12 +15,27 @@
         <tr>
             <th>ユーザーネーム</th>
             <th>氏名</th>
+            <th></th>
         </tr>
         <% @users.each do |user| %>
-        <tr>
-            <td><%= user.user_name %></td>
-            <td><%= user.name %></td>
-        </tr>
+            <% unless user == current_user %>
+            <tr>
+                <td><%= user.user_name %></td>
+                <td><%= user.name %></td>
+                <td>
+                <% if current_group.invite?(user) && current_group.confirm_status(user).status == 'invite' %>
+                    <div> 参加承認待ちです</div>
+                <% elsif current_group.invite?(user) && current_group.confirm_status(user).status == 'accept'%>
+                    <div> グループに参加しています</div>
+                <% else %>
+                <%= form_with(model: current_group.relationships.build, local: true) do |f| %>
+                    <%= hidden_field_tag :user_id, user.id %>
+                    <%= f.submit 'グループに招待する' ,data: { confirm: "このユーザーを招待しますか？" }, class: 'btn btn-primary btn-sm'%>
+                <% end %>
+                <% end %>
+                </td>
+            </tr>
+            <% end %>
         <% end %>
     </table>
     </div>

@@ -8,4 +8,8 @@ class User < ApplicationRecord
     has_many :groups
     # クラスはGroupで外部キーをleader_userに設定
     has_many :leader_groups, class_name:'Group' , foreign_key: :leader_user
+    has_many :relationships, dependent: :destroy
+    has_many :groups ,through: :relationships ,source: :group
+
+    
 end

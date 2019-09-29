@@ -1,7 +1,12 @@
 class GroupsController < ApplicationController
   def index
+    @relationships = current_user.relationships.where(status: 'accept')
+    @accept_groups = []
+    @relationships.each do |relationship|
+    @accept_groups.push(Group.find(relationship.group_id))
+    end
   end
-
+  
   def new
     @group = Group.new
   end
@@ -12,18 +17,24 @@ class GroupsController < ApplicationController
     # @group = Group.new(group_params)
     
     if @group.save
+      @relation = current_user.relationships.create(group_id: @group.id, status: 'accept')
       flash[:success] = '新しいグループを作成しました'
       # 後ほどgroups_urlに飛ばせるようにする
-      redirect_to search_users_url
+      redirect_to @group
     
     else
       flash.now[:danger] = 'グループを作成出来ませんでした'
       render :new
-    end  
+    end
   end
+  
+  def show
+    session[:group_id] = params[:id]
+  end
+  
 end
   private
   
-  def group_params
-    params.require(:group).permit(:name)
-  end
+def group_params
+  params.require(:group).permit(:name)
+end
