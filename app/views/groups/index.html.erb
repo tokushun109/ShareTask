@@ -4,10 +4,12 @@
     <table class="table table-striped table-bordered">
         <tr>
             <th>グループ名</th>
+            <th>管理者</th>
         </tr>
         <% @accept_groups.each do |accept_group|%>
         <tr>
             <td><%= link_to accept_group.name, accept_group %></td>
+            <td><%= accept_group.leader_user.name %></td>
         </tr>
         <% end %>
     </table>

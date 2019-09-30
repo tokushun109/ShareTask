@@ -30,6 +30,11 @@ class GroupsController < ApplicationController
   
   def show
     session[:group_id] = params[:id]
+    @relationships = current_group.relationships.where(status: 'accept')
+    @accept_users_name = []
+    @relationships.each do |relationship|
+    @accept_users_name.push(User.find(relationship.user_id).name)
+    end
   end
   
 end

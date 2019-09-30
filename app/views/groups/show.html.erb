@@ -1,1 +1,5 @@
+<h2>グループ名：<%= current_group.name %></h2>
+<h2>管理者：<%= current_group.leader_user.name %></h2>
+<h2>ユーザー一覧：<%= @accept_users_name.join(" , ") %></h2>
+
 <%= link_to 'ユーザーを招待する', search_users_path, class: 'btn btn-primary btn-block' %>

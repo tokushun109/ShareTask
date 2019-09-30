@@ -1,0 +1,12 @@
+<h1><%= "#{@group.name}から招待されています" %></h1>
+<h2>参加しますか？</h2>
+
+<%= form_with(url: accept_relationships_path, local: true, method: :put) do |f| %>
+     <%= hidden_field_tag :group_id, @group.id %>
+<%= f.submit "参加する", class:'btn btn-primary btn-block', data: { confirm: "このグループに参加しますか?" } %>
+<% end %>
+
+<%= form_with(url: deny_relationships_path, local: true, method: :delete) do |f| %>
+     <%= hidden_field_tag :group_id, @group.id %>
+<%= f.submit "辞退する", class:'btn btn-danger btn-block', data: { confirm: "本当に辞退しますか?" } %>
+<% end %>

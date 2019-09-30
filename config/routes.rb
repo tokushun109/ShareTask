@@ -14,5 +14,11 @@ Rails.application.routes.draw do
   end
   
   resources :groups, only: [:index, :new, :create, :show]
-  resources :relationships, only: [:create]
+  resources :relationships, only: [:create] do
+    collection do
+      get :invite
+      put :accept
+      delete :deny
+    end
+  end
 end

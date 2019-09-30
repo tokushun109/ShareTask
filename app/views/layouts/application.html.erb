@@ -18,7 +18,7 @@
   </head>
 
   <body>
-    <%= render 'layouts/navbar' %>
+    <%= render 'layouts/navbar' ,invite_relationships: @invite_relationships, invite_groups: @invite_groups %>
 
     <div class="container">
       <%= render 'layouts/flash_messages' %>

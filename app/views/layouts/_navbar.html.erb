@@ -1,7 +1,11 @@
 <header class="mb-4">
   <!--タイトルロゴの作成-->
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">Share Task</a>
+    <% if logged_in? %>
+    <%= link_to 'Share Task', groups_path, class: 'navbar-brand' %>
+    <% else %>
+    <%= link_to 'Share Task', root_path, class: 'navbar-brand' %>
+    <% end %>
   <!--ハンバーガーの作成-->  
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
       <span class="navbar-toggler-icon"></span>
@@ -10,6 +14,23 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <% if logged_in? %>
+          <li class="nav-item dropdown">
+            <% if invite_relationships.count == 0 %>
+            <div class="nav-link">招待はありません</div>
+            <% else %>
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= "#{invite_relationships.count}個のグループから招待されています" %></a>
+            <% end %>
+            <ul class="dropdown-menu dropdown-menu-right">
+            <% invite_groups.each do |invite_group|%>
+              <li class="dropdown-item">
+                <%= form_with(url: invite_relationships_path, local: true, method: :get) do |f| %>
+                  <%= hidden_field_tag :group_id, invite_group.id %>
+                  <%= f.submit "#{invite_group.name}からの招待を確認" %>
+                <% end %>
+              </li>
+	          <% end %>
+            </ul>
+          </li>
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
             <ul class="dropdown-menu dropdown-menu-right">
