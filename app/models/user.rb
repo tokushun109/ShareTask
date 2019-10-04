@@ -5,11 +5,11 @@ class User < ApplicationRecord
     validates :email, presence: true, length: { maximum: 255 },format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },uniqueness: { case_sensitive: false }    
     has_secure_password
     
-    has_many :groups
     # クラスはGroupで外部キーをleader_userに設定
-    has_many :leader_groups, class_name:'Group' , foreign_key: :leader_user
+    has_many :leader_groups, class_name:'Group', foreign_key: :leader_user
     has_many :relationships, dependent: :destroy
-    has_many :groups ,through: :relationships ,source: :group
-
+    has_many :groups, through: :relationships, source: :group
+    has_many :tasks, dependent: :destroy, foreign_key: :post_user
+    has_many :post_groups, through: :tasks, source: :group
     
 end

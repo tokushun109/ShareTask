@@ -1,0 +1,31 @@
+<div class="col-sm-8 offset-sm-2">
+
+<h1>タスク名：<%= @task.name %></h1>
+<%= link_to 'タスクを削除', @task, method: :delete, class:'btn btn-danger btn-block', data: { confirm: "本当に削除しますか?" } %>
+<h3>進捗管理</h3>
+
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th>記入日</th>
+            <th>進捗度(％)</th>
+            <th>補足</th>
+            <th>操作</th>
+        </tr>
+        <!--eachで表示する-->
+        <% @records.each do |record| %>
+        <tr>
+            <td><%= set_time(record.updated_at)  %></td>
+            <td><%= record.progress  %></td>
+            <td><%= record.supplement  %></td>
+            <%= form_with(model: record, local: true, method: :delete) do |f| %>
+            <%= hidden_field_tag :id, record.id %>
+            <td><%= f.submit '削除', class: 'btn btn-danger btn-block' %></td>
+            <% end %>
+        </tr>
+        <% end %>
+    </table>
+
+<%= link_to '進捗追加', new_record_path, class: 'btn btn-primary btn-block' %>
+<%= link_to 'タスク一覧へ戻る', current_group%>
+
+</div>

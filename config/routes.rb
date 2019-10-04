@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :groups, only: [:index, :new, :create, :show]
+  resources :groups, only: [:index, :new, :create, :show, :destroy ]
   resources :relationships, only: [:create] do
     collection do
       get :invite
@@ -21,4 +21,6 @@ Rails.application.routes.draw do
       delete :deny
     end
   end
+  resources :tasks, only: [:new, :create, :show, :edit, :update, :destroy]
+  resources :records, only: [:new, :create, :edit, :update, :destroy]
 end

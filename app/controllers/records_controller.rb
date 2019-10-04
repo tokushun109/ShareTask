@@ -1,0 +1,47 @@
+class RecordsController < ApplicationController
+before_action :require_user_logged_in
+before_action :correct_record, only: [:destroy]
+
+  def new
+    @record = Record.new()
+  end
+
+  def create
+    @record =current_task.records.build(record_params)
+    if @record.save
+      flash[:success] = '新しい進捗を追加しました'
+      redirect_to current_task
+    
+    else
+      flash.now[:danger] = '進捗を追加できませんでした'
+      render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
+    @record.destroy
+    flash[:success] = '進捗を削除しました'
+    redirect_to current_task
+  end
+end
+
+ private
+ 
+def record_params
+  params.require(:record).permit(:progress, :supplement)
+end
+
+def correct_record
+  @record = current_task.records.find_by(id: params[:id])
+  unless @record
+    redirect_to root_url
+  end
+end
+
+

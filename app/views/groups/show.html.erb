@@ -1,5 +1,38 @@
-<h2>グループ名：<%= current_group.name %></h2>
-<h2>管理者：<%= current_group.leader_user.name %></h2>
-<h2>ユーザー一覧：<%= @accept_users_name.join(" , ") %></h2>
+<div class="col-sm-8 offset-sm-2">
 
-<%= link_to 'ユーザーを招待する', search_users_path, class: 'btn btn-primary btn-block' %>
+<h1>グループ名：<%= current_group.name %></h1>
+<%= link_to 'グループを削除', @group, method: :delete, class:'btn btn-danger btn-block', data: { confirm: "本当に削除しますか?" } %>
+<h3>管理者：<%= current_group.leader_user.name %></h3>
+<h3>ユーザー一覧：<%= @accept_users_name.join(" , ") %></h3>
+
+<%= link_to 'ユーザーを招待する', search_users_path, class: 'btn btn-primary btn-block mb-4' %>
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th>タスク名</th>
+            <th>担当</th>
+            <th>期限</th>
+            <th>進捗度(％)</th>
+            <th>補足</th>
+        </tr>
+        <% @tasks.each do |task|%>
+        <tr>
+            <td><%= link_to task.name, task %></td>
+            <td><%= link_to task.in_charge, task %></td>
+            <td><%= link_to set_time(task.time_limit), task %></td>
+            <td>
+                <% unless task.records.last == nil %>
+                <%= link_to task.records.last.progress, task %>
+                <% end %>
+            </td>
+            <td>
+                <% unless task.records.last == nil %>
+                <%= link_to task.records.last.supplement, task %>
+                <% end %>
+            </td>
+        </tr>
+        <% end %>
+    </table>
+<%= link_to '新規タスク追加', new_task_path, class: 'btn btn-primary btn-block' %>
+<%= link_to 'グループ一覧へ戻る', groups_path %>
+
+</div>

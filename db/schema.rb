@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_27_124909) do
+ActiveRecord::Schema.define(version: 2019_10_02_085925) do
 
   create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -18,6 +18,15 @@ ActiveRecord::Schema.define(version: 2019_09_27_124909) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["leader_user_id"], name: "index_groups_on_leader_user_id"
+  end
+
+  create_table "records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "progress"
+    t.string "supplement"
+    t.bigint "task_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_records_on_task_id"
   end
 
   create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -31,6 +40,18 @@ ActiveRecord::Schema.define(version: 2019_09_27_124909) do
     t.index ["user_id"], name: "index_relationships_on_user_id"
   end
 
+  create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.bigint "post_user_id"
+    t.bigint "post_group_id"
+    t.string "in_charge"
+    t.datetime "time_limit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_group_id"], name: "index_tasks_on_post_group_id"
+    t.index ["post_user_id"], name: "index_tasks_on_post_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "user_name"
@@ -41,6 +62,9 @@ ActiveRecord::Schema.define(version: 2019_09_27_124909) do
   end
 
   add_foreign_key "groups", "users", column: "leader_user_id"
+  add_foreign_key "records", "tasks"
   add_foreign_key "relationships", "groups"
   add_foreign_key "relationships", "users"
+  add_foreign_key "tasks", "groups", column: "post_group_id"
+  add_foreign_key "tasks", "users", column: "post_user_id"
 end

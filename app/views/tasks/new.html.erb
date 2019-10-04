@@ -1,0 +1,26 @@
+<div class="text-center">
+  <h1>新規タスク追加</h1>
+</div>
+
+<div class="row">
+    <div class="col-sm-6 offset-sm-3">
+        <%= form_with(model: @task, local: true) do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
+            <div class="form-group">
+                <%= f.label :name, 'タスク名' %>
+                <%= f.text_field :name, class: 'form-control'  %>
+            </div>
+            
+            <div class="form-group">
+                <%= f.label :in_charge, '担当者' %>
+                <%= f.text_field :in_charge, class: 'form-control' %>
+            </div>
+            
+            <div class="form-group">
+                <%= f.label :time_limit, '期限' %>
+                <%= f.datetime_field :time_limit, class: 'form-control' %>
+            </div>
+                <%= f.submit '登録', class: 'btn btn-primary btn-block'  %>
+        <% end %>
+    </div>
+</div>

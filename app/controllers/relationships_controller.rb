@@ -1,4 +1,6 @@
 class RelationshipsController < ApplicationController
+  before_action :require_user_logged_in
+  
   def create
     @user = User.find(params[:user_id])
     @relationship = current_group.relationships.build(user_id: @user.id, status: 'invite')
