@@ -1,31 +1,45 @@
-<div class="col-sm-8 offset-sm-2">
-
+<div class="col-sm-10 offset-sm-1">
 <h1>タスク名：<%= @task.name %></h1>
-<%= link_to 'タスクを削除', @task, method: :delete, class:'btn btn-danger btn-block', data: { confirm: "本当に削除しますか?" } %>
-<h3>進捗管理</h3>
+    <% if @task.status == 'incomplete' %>
+    <p class="mt-4">状態 : 未完了</p>
+        <%= link_to fa_icon("check", text: "タスクを完了にする") ,complete_task_path(@task), class:'badge badge-danger', method: :put %>
+    <% else %>
+    <p class="mt-4">状態 : 完了</p>
+        <%= link_to fa_icon("times", text: "タスクを未完了に戻す") ,incomplete_task_path(@task), class:'badge badge-secondary', method: :put %>
+    <% end %>
+<p class="mt-4"><%= "担当者 : #{current_task.in_charge}" %></p>
+<p><%= "期限 : #{set_time(current_task.time_limit)}まで" %></p>
+<%= link_to fa_icon("edit", text: "タスクを編集"), edit_task_path(@task) , class:'badge badge-info user-invite-btn' %>
+<%= link_to fa_icon("trash-alt", text: "タスクを削除"), @task, method: :delete, class:'badge badge-secondary', data: { confirm: "本当に削除しますか?" } %>
 
+ <h2 class="mt-5">進捗一覧</h2>
     <table class="table table-striped table-bordered">
         <tr>
-            <th>記入日</th>
-            <th>進捗度(％)</th>
-            <th>補足</th>
-            <th>操作</th>
+            <th class="text-center">記入日</th>
+            <th class="text-center">進捗度(%)</th>
+            <th class="text-center">補足</th>
+            <th class="text-center">操作</th>
         </tr>
         <!--eachで表示する-->
         <% @records.each do |record| %>
         <tr>
-            <td><%= set_time(record.updated_at)  %></td>
-            <td><%= record.progress  %></td>
-            <td><%= record.supplement  %></td>
-            <%= form_with(model: record, local: true, method: :delete) do |f| %>
+            <td class="text-center"><%= set_time(record.created_at)  %></td>
+            <td class="text-center"><%= record.progress  %></td>
+            <td class="text-center"><%= record.supplement  %></td>
+            <td class="text-center">
+            <%= link_to fa_icon("edit", text: "編集"), edit_record_path(record) , class:'badge badge-info' %>
+            <%= form_with(model: record, local: true, method: :delete, data: { confirm: "本当に削除しますか?" }) do |f| %>
             <%= hidden_field_tag :id, record.id %>
-            <td><%= f.submit '削除', class: 'btn btn-danger btn-block' %></td>
+            <%= button_tag :type => "submit", :class =>"badge badge-secondary" do %>
+            <i class="fa fa-trash-alt"></i> 削除
             <% end %>
+            <% end %>
+            </td>
         </tr>
         <% end %>
     </table>
 
-<%= link_to '進捗追加', new_record_path, class: 'btn btn-primary btn-block' %>
-<%= link_to 'タスク一覧へ戻る', current_group%>
-
+<%= link_to fa_icon("plus", text: "進捗追加"), new_record_path, class: 'btn btn-primary btn-block' %>
+<%= link_to 'タスク一覧へ戻る≫', current_group %>
+<%= paginate(@records) %>
 </div>

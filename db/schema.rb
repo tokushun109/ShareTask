@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2019_10_02_085925) do
     t.bigint "post_group_id"
     t.string "in_charge"
     t.datetime "time_limit"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_group_id"], name: "index_tasks_on_post_group_id"

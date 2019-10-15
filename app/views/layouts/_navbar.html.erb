@@ -1,10 +1,10 @@
 <header class="mb-4">
   <!--タイトルロゴの作成-->
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark pl-4 pt-2 b-2">
     <% if logged_in? %>
-    <%= link_to 'Share Task', groups_path, class: 'navbar-brand' %>
+    <%= link_to 'Share Task', groups_path, class: 'navbar-brand logo-font' %>
     <% else %>
-    <%= link_to 'Share Task', root_path, class: 'navbar-brand' %>
+    <%= link_to 'Share Task', root_path, class: 'navbar-brand logo-font' %>
     <% end %>
   <!--ハンバーガーの作成-->  
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
@@ -14,6 +14,7 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <% if logged_in? %>
+          <li class="nav-item"><%= link_to '使い方', how_to_use_path, class:'nav-link' %></li>
           <li class="nav-item dropdown">
             <% if invite_relationships.count == 0 %>
             <div class="nav-link">招待はありません</div>
@@ -34,11 +35,13 @@
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
             <ul class="dropdown-menu dropdown-menu-right">
+              <li class="dropdown-item"><%= link_to 'ユーザー情報を編集する', edit_user_path(current_user) %></li>
               <li class="dropdown-item"><%= link_to 'ログアウト', logout_path, method: :delete %></li>
             </ul>
           </li>
         <% else %>
           <li class="nav-item"><%= link_to '新規登録', signup_path, class:'nav-link' %></li>
+          <li class="nav-item"><%= link_to '使い方', how_to_use_path, class:'nav-link' %></li>
           <li class="nav-item"><%= link_to 'ログイン', login_path, class: 'nav-link'%></li>
         <% end %>
       </ul>

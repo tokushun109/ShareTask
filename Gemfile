@@ -59,3 +59,7 @@ gem 'kaminari'
 gem 'ransack'
 
 gem 'pry-byebug', group: :development
+
+gem 'rails-i18n'
+
+gem 'font-awesome-rails'

@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_task, only: [:destroy]
+  before_action :correct_task, only: [:show, :edit, :update, :destroy, :complete, :incomplete]
   
   def new
     @task = Task.new
@@ -9,6 +9,7 @@ class TasksController < ApplicationController
   def create
     # post_user_idにcurrent_userを、post_group_idにcurrent_groupをnameに好きな値を入れたい
     @task = current_user.tasks.build(task_params)
+    @task.status = 'incomplete'
     @task.post_group_id = current_group.id
     
     if @task.save
@@ -24,8 +25,20 @@ class TasksController < ApplicationController
 
   def show
     session[:task_id] = params[:id]
-    @task = current_task
-    @records = current_task.records.order(id: :desc)
+    @records = current_task.records.order(id: :desc).page(params[:page]).per(10)
+  end
+  
+  def edit
+  end
+  
+  def update
+    if @task.update(task_params)
+      flash[:success] = 'タスクの内容を変更しました'
+      redirect_to @task
+    else
+      flash.now[:danger] = 'タスクの内容を変更できませんでした'
+      render :edit
+    end
   end
 
   def destroy
@@ -34,6 +47,21 @@ class TasksController < ApplicationController
     flash[:success] = 'タスクを削除しました'
     redirect_to current_group
   end
+  
+  def complete
+    @task.status = 'complete'
+    @task.save
+    flash[:success] = "#{@task.name}を完了にしました"
+    redirect_to current_group
+  end
+  
+  def incomplete
+    @task.status = 'incomplete'
+    @task.save
+    flash[:success] = "#{@task.name}を未完了に戻しました"
+    redirect_to current_group
+  end
+  
 end
 
   private
@@ -43,8 +71,8 @@ def task_params
 end
 
 def correct_task
-  @task = current_user.tasks.find_by(post_group_id: current_group.id, id: params[:id])
+  @task = current_group.tasks.find_by(post_group_id: current_group.id, id: params[:id])
   unless @task
-    redirect_to root_url
+    redirect_to groups_url
   end
 end

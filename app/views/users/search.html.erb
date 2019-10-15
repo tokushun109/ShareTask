@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-sm-6 offset-sm-3">
+    <div class="col-lg-8 offset-lg-2">
         <%= search_form_for @search, url: search_users_path do |f| %>
             <div class= "form-group">
                 <%= f.label :user_name_cont, 'ユーザーネーム' %>
@@ -13,16 +13,16 @@
         <% end %>
     <table class="table table-striped table-bordered">
         <tr>
-            <th>ユーザーネーム</th>
-            <th>氏名</th>
-            <th></th>
+            <th class="text-center">ユーザーネーム</th>
+            <th class="text-center">氏名</th>
+            <th class="text-center">招待状況</th>
         </tr>
         <% @users.each do |user| %>
             <% unless user == current_user %>
             <tr>
-                <td><%= user.user_name %></td>
-                <td><%= user.name %></td>
-                <td>
+                <td class="text-center"><%= user.user_name %></td>
+                <td class="text-center"><%= user.name %></td>
+                <td class="text-center">
                 <% if current_group.invite?(user) && current_group.confirm_status(user).status == 'invite' %>
                     <div> 参加承認待ちです</div>
                 <% elsif current_group.invite?(user) && current_group.confirm_status(user).status == 'accept'%>
@@ -30,7 +30,7 @@
                 <% else %>
                 <%= form_with(model: current_group.relationships.build, local: true) do |f| %>
                     <%= hidden_field_tag :user_id, user.id %>
-                    <%= f.submit 'グループに招待する' ,data: { confirm: "このユーザーを招待しますか？" }, class: 'btn btn-primary btn-sm'%>
+                    <%= f.submit 'グループに招待する' ,data: { confirm: "このユーザーを招待しますか？" }, class: 'btn btn-info btn-block btn-adjust'%>
                 <% end %>
                 <% end %>
                 </td>
@@ -38,5 +38,7 @@
             <% end %>
         <% end %>
     </table>
+    <%= paginate(@users) %>
+    <%= link_to 'タスク一覧へ戻る≫', current_group%>
     </div>
 </div>

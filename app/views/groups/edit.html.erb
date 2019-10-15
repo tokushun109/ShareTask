@@ -1,5 +1,5 @@
 <div class="text-center">
-  <h1>新規グループ作成</h1>
+  <h1>グループ名変更</h1>
 </div>
 
 <div class="row">
@@ -10,8 +10,8 @@
                 <%= f.label :name, 'グループ名' %>
                 <%= f.text_field :name, class: 'form-control'  %>
             </div>
-                <%= f.submit '登録', class: 'btn btn-primary btn-block'  %>
+                <%= f.submit '変更', class: 'btn btn-primary btn-block'  %>
         <% end %>
-        <%= link_to 'グループ一覧へ戻る≫', groups_path%>
+        <%= link_to 'タスク一覧へ戻る≫', current_group %>
     </div>
 </div>

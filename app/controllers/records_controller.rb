@@ -1,6 +1,6 @@
 class RecordsController < ApplicationController
 before_action :require_user_logged_in
-before_action :correct_record, only: [:destroy]
+before_action :correct_record, only: [:edit, :update, :destroy]
 
   def new
     @record = Record.new()
@@ -22,6 +22,13 @@ before_action :correct_record, only: [:destroy]
   end
 
   def update
+    if @record.update(record_params)
+      flash[:success] = '進捗を変更しました'
+      redirect_to current_task
+    else
+      flash.now[:danger] = '進捗を変更できませんでした'
+      render :edit
+    end
   end
 
   def destroy
@@ -40,7 +47,7 @@ end
 def correct_record
   @record = current_task.records.find_by(id: params[:id])
   unless @record
-    redirect_to root_url
+    redirect_to groups_url
   end
 end
 

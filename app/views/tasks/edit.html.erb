@@ -1,5 +1,5 @@
 <div class="text-center">
-  <h1>新規タスク追加</h1>
+  <h1>タスク詳細編集</h1>
 </div>
 
 <div class="row">
@@ -20,8 +20,8 @@
                 <%= f.label :time_limit, '期限' %>
                 <%= f.datetime_field :time_limit, class: 'form-control' %>
             </div>
-                <%= f.submit '登録', class: 'btn btn-primary btn-block'  %>
+                <%= f.submit '変更', class: 'btn btn-primary btn-block'  %>
         <% end %>
-        <%= link_to 'タスク一覧へ戻る≫', current_group%>
+        <%= link_to 'タスク詳細へ戻る≫', current_task %>
     </div>
 </div>

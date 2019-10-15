@@ -4,11 +4,11 @@
 
 <div class="row">
   <div class="col-sm-6 offset-sm-3">
-
     <%= form_with(model: @record, local: true) do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
       
       <div class="form-group">
-        <%= f.label :progress, '進捗度' %>
+        <%= f.label :progress, '進捗度(%)' %>
         <%= f.text_field :progress, class: 'form-control' %>
       </div>
 
@@ -19,5 +19,7 @@
 
       <%= f.submit '登録', class: 'btn btn-primary btn-block' %>
     <% end %>
+    <%= link_to '進捗一覧へ戻る≫', current_task %>
+
   </div>
 </div>

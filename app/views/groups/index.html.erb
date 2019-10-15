@@ -1,17 +1,19 @@
-<h1>グループ一覧</h1>
-
 <div class="col-sm-8 offset-sm-2">
-    <table class="table table-striped table-bordered">
-        <tr>
-            <th>グループ名</th>
-            <th>管理者</th>
-        </tr>
-        <% @accept_groups.each do |accept_group|%>
-        <tr>
-            <td><%= link_to accept_group.name, accept_group %></td>
-            <td><%= accept_group.leader_user.name %></td>
-        </tr>
-        <% end %>
-    </table>
-    <%= link_to '新規グループ作成', new_group_path,class: 'btn btn-primary btn-block' %>
+<h1 class="text-center">グループを作成して<br>タスクをメンバーと共有しましょう!</h1>
+    <h2 class="mt-5" >グループ一覧</h2>
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th>グループ名</th>
+                <th>管理者</th>
+            </tr>
+            <% @accept_groups.each do |accept_group|%>
+            <tr>
+                <td><%= link_to accept_group.name, accept_group %></td>
+                <td><%= accept_group.leader_user.name %></td>
+            </tr>
+            <% end %>
+        </table>
+        <%= link_to fa_icon("plus", text: "新規グループ作成"), new_group_path,class: 'btn btn-primary' %>
+        <%= paginate(@accept_groups) %>
+    </div>
 </div>

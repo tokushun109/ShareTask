@@ -6,6 +6,7 @@ class CreateTasks < ActiveRecord::Migration[5.2]
       t.references :post_group, foreign_key: { to_table: :groups }
       t.string :in_charge
       t.datetime :time_limit
+      t.string :status
 
       t.timestamps
     end

@@ -8,6 +8,7 @@
     <%= csp_meta_tag %>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Oleo+Script:400,700&display=swap" rel="stylesheet">
 
     <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -20,10 +21,11 @@
   <body>
     <%= render 'layouts/navbar' ,invite_relationships: @invite_relationships, invite_groups: @invite_groups %>
 
-    <div class="container">
+    <div class="container footer-space">
       <%= render 'layouts/flash_messages' %>
 
       <%= yield %>
     </div>
+    <%= render 'layouts/footer' %>
   </body>
 </html>

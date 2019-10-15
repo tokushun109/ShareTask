@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_group, only: [:destroy]
+  before_action :correct_group, only: [:show, :edit, :update, :destroy]
   
   def index
     @relationships = current_user.relationships.where(status: 'accept')
@@ -8,6 +8,7 @@ class GroupsController < ApplicationController
     @relationships.each do |relationship|
     @accept_groups.push(Group.find(relationship.group_id))
     end
+    @accept_groups = Kaminari.paginate_array(@accept_groups).page(params[:page]).per(10)
   end
   
   def new
@@ -37,7 +38,20 @@ class GroupsController < ApplicationController
     @accept_users_name = []
     @relationships.each do |relationship|
     @accept_users_name.push(User.find(relationship.user_id).name)
-    @tasks = current_user.tasks.where(post_group_id: current_group)
+    @tasks = current_group.tasks.order(status: :desc).order(time_limit: :asc).page(params[:page]).per(10)
+    end
+  end
+  
+  def edit
+  end
+  
+  def update
+    if @group.update(group_params)
+      flash[:success] = 'グループ名を変更しました'
+      redirect_to @group
+    else
+      flash.now[:danger] = 'グループ名を変更できませんでした'
+      render :edit
     end
   end
   
@@ -58,6 +72,8 @@ end
 def correct_group
   @group = current_user.groups.find_by(id: params[:id])
   unless @group
-    redirect_to root_url
+    redirect_to groups_url
   end
 end
+
+

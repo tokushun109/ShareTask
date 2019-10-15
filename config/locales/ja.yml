@@ -1,0 +1,26 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー # view側： User.model_name.human => "ユーザ" / t("activerecord.models.user")と同じ
+      group: グループ
+      task: タスク
+      record: 進捗
+    attributes:
+      user:
+        id: ID
+        name: 名前 # view側： User.human_attribute_name :name => "名前" /　t("activerecord.attributes.user.name")と同じ
+        user_name: ユーザーネーム
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用のパスワード
+      group:
+        id: ID
+        name: 名前
+      task:
+        id: ID
+        name: タスク名
+        in_charge: 担当者
+        time_limit: 期限
+      record:
+        progress: 進捗度
+        supplement: 補足
