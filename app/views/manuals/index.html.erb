@@ -14,3 +14,9 @@
   <h2 class="top_img_title">進捗追加画面</h2>
   <%= image_tag '/images/top_img_3.png', class: 'top_img' %>
 </div>
+
+<% if logged_in? %>
+  <%= link_to 'グループ一覧へ≫', groups_path %>
+<% else %>
+  <%= link_to 'トップページへ≫', root_path %>
+<% end %>
