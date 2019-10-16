@@ -21,13 +21,14 @@
                 <%= raw sprintf(
                     f.datetime_select(
                       :time_limit,
+                      discard_minute: true,
                       minute_step: 15,
                       use_month_numbers: true,
                       default: Time.now + 9.hour,
                       date_separator: '%s',
                       datetime_separator: '%s',
                       time_separator: '%s'),
-                      '年', '月', '日', '時') + '分' %>
+                      '年', '月', '日') + '時' %>
                
             </div>
                 <%= f.submit '登録', class: 'btn btn-primary btn-block'  %>
