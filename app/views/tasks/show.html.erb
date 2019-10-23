@@ -27,10 +27,10 @@
             <td class="text-center"><%= record.progress  %></td>
             <td class="text-center"><%= record.supplement  %></td>
             <td class="text-center">
-            <%= link_to fa_icon("edit", text: "編集"), edit_record_path(record) , class:'badge badge-info' %>
+            <%= link_to fa_icon("edit", text: "編集"), edit_record_path(record) , class:'badge badge-info mb-2 pt-2 pb-2' %>
             <%= form_with(model: record, local: true, method: :delete, data: { confirm: "本当に削除しますか?" }) do |f| %>
             <%= hidden_field_tag :id, record.id %>
-            <%= button_tag :type => "submit", :class =>"badge badge-secondary" do %>
+            <%= button_tag :type => "submit", :class =>"badge badge-secondary pt-2 pb-2" do %>
             <i class="fa fa-trash-alt"></i> 削除
             <% end %>
             <% end %>
