@@ -4,7 +4,7 @@
 }
 
 .top_img{
-    width:90%;
+    width:70%;
     background-color:#C0C0C0;
     padding-bottom:20px;
 }
@@ -29,5 +29,9 @@
 @media(max-width: 1000px){
     .top_img_title{
     font-size:100%;
+    }
+    
+    .top_img{
+    width:90%;
     }
 }
