@@ -10,9 +10,7 @@ class Group < ApplicationRecord
   has_many :post_users, through: :tasks, source: :user
 
   def invite_user(user)
-    unless relationships.find_by(user_id: user.id)
-      relationships.create(user_id: user.id, status: 'invite')
-    end
+    relationships.create(user_id: user.id, status: 'invite') unless relationships.find_by(user_id: user.id)
   end
 
   def invite?(user)
