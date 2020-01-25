@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-# 書きたいテスト
   before do
   	@user = build(:user)
   end
