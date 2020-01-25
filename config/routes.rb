@@ -1,14 +1,15 @@
-Rails.application.routes.draw do
+# frozen_string_literal: true
 
+Rails.application.routes.draw do
   root to: 'toppages#index'
   get 'how_to_use', to: 'manuals#index'
-  
+
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
-  
+
   get 'signup', to: 'users#new'
-  resources :users, only: [:new, :create, :edit, :update] do
+  resources :users, only: %i[new create edit update] do
     member do
       get :edit_pw
     end
@@ -18,8 +19,8 @@ Rails.application.routes.draw do
       delete :expulsion
     end
   end
-  
-  resources :groups, only: [:index, :new, :create, :show, :edit, :update, :destroy ]
+
+  resources :groups, only: %i[index new create show edit update destroy]
   resources :relationships, only: [:create] do
     collection do
       get :invite
@@ -27,11 +28,11 @@ Rails.application.routes.draw do
       delete :deny
     end
   end
-  resources :tasks, only: [:new, :create, :show, :edit, :update, :destroy] do
-      member do
+  resources :tasks, only: %i[new create show edit update destroy] do
+    member do
       put :complete
       put :incomplete
     end
   end
-  resources :records, only: [:new, :create, :edit, :update, :destroy]
+  resources :records, only: %i[new create edit update destroy]
 end
