@@ -3,15 +3,7 @@ require 'rails_helper'
 RSpec.describe Record, type: :model do
 
   before do
-    @user = create(:user)
-    @group = @user.leader_groups.build(name: "Example Group")
-    @group.save
-    @task = @user.tasks.build(name: "Example task",
-                                in_charge: "Example user",
-                                status: "imcomplete",
-                                post_group_id: @group.id)
-    @task.save
-    @record = @task.records.build(progress: "100%")
+    @record = build(:record)
   end
 
   context "テストで使用するrecordが有効な値の時" do

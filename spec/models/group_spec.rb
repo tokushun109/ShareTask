@@ -3,8 +3,7 @@ require 'rails_helper'
 RSpec.describe Group, type: :model do
 
   before do
-    @user = create(:user)
-  	@group = @user.leader_groups.build(name: "Example Group")
+  	@group = build(:group)
   end
 
   context "テストで使用するgroupが有効な値の時" do
