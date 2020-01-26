@@ -9,18 +9,36 @@ AllCops:
   Rails:
     Enabled: true
 
-# "Missing top-level class documentation comment."を無効
-Style/Documentation:
+# 日本語でのコメントを許可
+AsciiComments:
   Enabled: false
 
-# "Prefer single-quoted strings when you don't need string interpolation or special symbols."を無効
-Style/StringLiterals:
+# クラスのコメント必須を無視
+Documentation:
   Enabled: false
 
-# "Line is too long"を無効
+# モジュール名::クラス名の定義を許可
+ClassAndModuleChildren:
+  Enabled: false
+
+# 文字リテラルのイミュータブル宣言を無視（freezeになるのはRuby3以降）
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# 行の文字数を制限しない
 Metrics/LineLength:
   Enabled: false
 
-# "Use only ascii symbols in comments."を無効
-AsciiComments:
+#コードのソフトウェアサイズを無視
+Metrics/AbcSize:
+  Enabled: false
+
+#ブロック内の行数は50まで
+Metrics/BlockLength:
+  Max: 40
+
+Lint/SuppressedException:
+  Enabled: false
+
+Lint/SuppressedException:
   Enabled: false
