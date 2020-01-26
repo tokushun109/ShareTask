@@ -20,7 +20,7 @@ RSpec.describe Group, type: :model do
         expect(@group).to be_invalid
       end
     end
-    context "50文字以上の場合" do
+    context "51文字以上の場合" do
       it "invalidになること" do
         @group.name = "a" * 51
         expect(@group).to be_invalid

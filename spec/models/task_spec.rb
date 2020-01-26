@@ -25,7 +25,7 @@ RSpec.describe Task, type: :model do
         expect(@task).to be_invalid
       end
     end
-    context "50文字以上の場合" do
+    context "51文字以上の場合" do
       it "invalidになること" do
         @task.name = "a" * 51
         expect(@task).to be_invalid
@@ -34,7 +34,7 @@ RSpec.describe Task, type: :model do
   end
 
   describe "in_chargeの有効性" do
-    context "50文字以上の場合" do
+    context "51文字以上の場合" do
       it "invalidになること" do
         @task.in_charge = "a" * 51
         expect(@task).to be_invalid

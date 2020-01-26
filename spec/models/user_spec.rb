@@ -18,7 +18,7 @@ RSpec.describe User, type: :model do
         expect(@user).to be_invalid
       end
     end
-    context "50文字以上の場合" do
+    context "51文字以上の場合" do
       it "invalidになること" do
         @user.name = "a" * 51
         expect(@user).to be_invalid
@@ -33,7 +33,7 @@ RSpec.describe User, type: :model do
         expect(@user).to be_invalid
       end
     end
-    context "50文字以上の場合" do
+    context "51文字以上の場合" do
       it "invalidになること" do
         @user.user_name = "a" * 51
         expect(@user).to be_invalid
@@ -56,7 +56,7 @@ RSpec.describe User, type: :model do
         expect(@user).to be_invalid
       end
     end
-    context "255文字以上の場合" do
+    context "256文字以上の場合" do
       it "invalidになること" do
         @user.email = "a" * 244 + "@example.com"
         expect(@user).to be_invalid
