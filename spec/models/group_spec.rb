@@ -16,7 +16,7 @@ RSpec.describe Group, type: :model do
   describe "nameの有効性" do
     context "空白の場合" do
       it "invalidになること" do
-        @group.name = " "
+        @group.name = "  "
         expect(@group).to be_invalid
       end
     end
