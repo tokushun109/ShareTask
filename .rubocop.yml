@@ -1,0 +1,44 @@
+AllCops:
+  # 除外するディレクトリ（自動生成されたファイル）
+  # デフォルト設定にある"vendor/**/*"が無効化されないように記述
+  Exclude:
+    - bin/*
+    - db/schema.rb
+    - db/migrate/*
+    - vendor/**/*
+  Rails:
+    Enabled: true
+
+# 日本語でのコメントを許可
+AsciiComments:
+  Enabled: false
+
+# クラスのコメント必須を無視
+Documentation:
+  Enabled: false
+
+# モジュール名::クラス名の定義を許可
+ClassAndModuleChildren:
+  Enabled: false
+
+# 文字リテラルのイミュータブル宣言を無視（freezeになるのはRuby3以降）
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# 行の文字数を制限しない
+Metrics/LineLength:
+  Enabled: false
+
+#コードのソフトウェアサイズを無視
+Metrics/AbcSize:
+  Enabled: false
+
+#ブロック内の行数は50まで
+Metrics/BlockLength:
+  Max: 40
+
+Lint/SuppressedException:
+  Enabled: false
+
+Lint/SuppressedException:
+  Enabled: false

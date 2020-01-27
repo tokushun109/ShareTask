@@ -1,37 +1,36 @@
 .how_to_use_title{
-    text-align:center;
-    border-bottom:solid 4px #C0C0C0;
+  text-align:center;
+  border-bottom:solid 4px #C0C0C0;
 }
 
 .top_img{
-    width:70%;
-    background-color:#C0C0C0;
-    padding-bottom:20px;
+  width:70%;
+  background-color:#C0C0C0;
+  padding-bottom:20px;
 }
 
 .top_container{
-    margin-top:50px;
-    display:inline-block;
-    background-color:#C0C0C0;
-    width:100%;
-    text-align:center;
+  margin-top:50px;
+  display:inline-block;
+  background-color:#C0C0C0;
+  width:100%;
+  text-align:center;
 }
 
 .top_img_title{
-    color:white;
-    position:relative;
-    background-color:rgba(0,0,0,0.6);
-    padding-top:10px;
-    padding-bottom:10px;
-    font-size:200%;
+  color:white;
+  position:relative;
+  background-color:rgba(0,0,0,0.6);
+  padding-top:10px;
+  padding-bottom:10px;
+  font-size:200%;
 }
 
 @media(max-width: 1000px){
-    .top_img_title{
-    font-size:100%;
-    }
-    
-    .top_img{
-    width:90%;
-    }
+  .top_img_title{
+  font-size:100%;
+  }
+  .top_img{
+  width:90%;
+  }
 }

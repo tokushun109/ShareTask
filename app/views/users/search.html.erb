@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-lg-8 offset-lg-2">
+    <div class="col-lg-6 offset-lg-3">
         <%= search_form_for @search, url: search_users_path do |f| %>
             <div class= "form-group">
                 <%= f.label :user_name_cont, 'ユーザーネーム' %>
@@ -12,6 +12,8 @@
             <%= f.submit '検索', class: 'btn btn-primary btn-block mb-5' %>
         <% end %>
     <% if User.all.count > @users.count && @users.count != 0 %>
+    </div>
+    <div class="col-lg-8 offset-lg-2">
     <table class="table table-striped table-bordered">
         <tr>
             <th class="text-center">ユーザーネーム</th>
