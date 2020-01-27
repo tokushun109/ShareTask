@@ -35,6 +35,15 @@ RSpec.describe Task, type: :model do
     end
   end
 
+  describe 'time_limitの有効性' do
+    context '空白の場合' do
+      it 'invalidになること' do
+        @task.time_limit = ' '
+        expect(@task).to be_invalid
+      end
+    end
+  end
+
   describe 'statusの有効性' do
     context '空白の場合' do
       it 'invalidになること' do
