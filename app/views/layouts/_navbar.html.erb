@@ -1,16 +1,13 @@
 <header class="mb-4">
-  <!--タイトルロゴの作成-->
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark pl-4 pt-2 b-2">
     <% if logged_in? %>
     <%= link_to 'Share Task', groups_path, class: 'navbar-brand logo-font' %>
     <% else %>
     <%= link_to 'Share Task', root_path, class: 'navbar-brand logo-font' %>
     <% end %>
-  <!--ハンバーガーの作成-->  
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
       <span class="navbar-toggler-icon"></span>
     </button>
-  <!--ハンバーガーの中身作成（基本的にこっちが見えている）-->
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <% if logged_in? %>

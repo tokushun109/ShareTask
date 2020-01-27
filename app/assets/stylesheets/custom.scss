@@ -1,0 +1,28 @@
+// 共通レイアウト
+
+h1,p{
+  word-wrap: break-word;
+}
+
+ul{
+  padding-left:0;
+}
+
+li{
+  list-style-type:none;
+}
+
+@media(max-width: 670px){
+  h1{
+    font-size:120%;
+  }
+  .logo-font p{
+    font-size:60%;
+  }
+}
+
+@media(max-width: 1000px){
+  h1{
+    font-size:150%;
+  }
+}

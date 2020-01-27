@@ -3,46 +3,33 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .inline-block{
-    display: inline-block;
+  display: inline-block;
 }
 
 .group-delete-btn{
-    margin:0px 0px 20px 20px;
+  margin:0px 0px 20px 20px;
 }
 
-.table{ 
-    table-layout: fixed;
-    word-wrap: break-word;
-}
-
-h1, p{
-    word-wrap: break-word;
+.table{
+  table-layout: fixed;
+  word-wrap: break-word;
 }
 
 @media(max-width: 1000px){
-    h1{
-        font-size:150%;
-    }
+  .table{
+    font-size:80%;
+  }
 
-    .table{
-         font-size:80%;
-    }
-
-    .btn-adjust{
-        font-size:70%;
-    }
+  .btn-adjust{
+    font-size:70%;
+  }
 }
 @media(max-width: 670px){
-    h1{
-        font-size:120%;
-    }
+  .table{
+    font-size:70%;
+  }
 
-    .table{
-        font-size:70%;
-    }
-
-    .omitted{
-        display:none;
-    }
-
+  .omitted{
+    display:none;
+  }
 }

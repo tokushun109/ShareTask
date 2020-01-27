@@ -3,6 +3,7 @@
 class Task < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
   validates :in_charge, length: { maximum: 50 }
+  validates :time_limit, presence: true
   validates :status, presence: true
 
   belongs_to :post_user, class_name: 'User'
