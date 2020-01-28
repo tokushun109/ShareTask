@@ -42,7 +42,6 @@ group :test do
   gem 'faker'
   gem 'launchy'
   gem 'rspec-rails'
-  gem 'selenium-webdriver'
 end
 
 group :production do
