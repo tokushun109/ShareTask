@@ -7,13 +7,9 @@ class ApplicationController < ActionController::Base
   before_action :set_invite_groups, if: :logged_in?
 
   private
-
   def set_invite_groups
     @invite_relationships = current_user.relationships.where(status: 'invite')
-    @invite_groups = []
-    @invite_relationships.each do |invite_relationship|
-      @invite_groups.push(Group.find_by(id: invite_relationship.group_id))
-    end
+    @invite_groups = @invite_relationships.map { |invite_relationship| Group.find_by(id: invite_relationship.group_id) }
   end
 
   def require_user_logged_in
