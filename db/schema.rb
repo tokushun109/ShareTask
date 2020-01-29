@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_02_085925) do
+ActiveRecord::Schema.define(version: 2020_01_28_115341) do
 
   create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2019_10_02_085925) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "remember_digest"
   end
 
   add_foreign_key "groups", "users", column: "leader_user_id"
