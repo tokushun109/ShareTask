@@ -5,11 +5,8 @@ class GroupsController < ApplicationController
   before_action :correct_group, only: %i[show edit update destroy]
 
   def index
-    @relationships = current_user.relationships.where(status: 'accept')
-    @accept_groups = []
-    @relationships.each do |relationship|
-      @accept_groups.push(Group.find(relationship.group_id))
-    end
+    relationships = current_user.relationships.where(status: 'accept')
+    @accept_groups = relationships.map { |relationship| Group.find(relationship.group_id) }
     @accept_groups = Kaminari.paginate_array(@accept_groups).page(params[:page]).per(10)
   end
 
@@ -18,14 +15,11 @@ class GroupsController < ApplicationController
   end
 
   def create
-    # group_paramsをストロングパラメータで定義する必要あり
     @group = current_user.leader_groups.build(group_params)
-    # @group = Group.new(group_params)
 
     if @group.save
       @relation = current_user.relationships.create(group_id: @group.id, status: 'accept')
       flash[:success] = '新しいグループを作成しました'
-      # 後ほどgroups_urlに飛ばせるようにする
       redirect_to @group
 
     else
@@ -37,11 +31,8 @@ class GroupsController < ApplicationController
   def show
     session[:group_id] = params[:id]
     relationships = current_group.relationships.where(status: 'accept')
-    @accept_users_name = []
-    relationships.each do |relationship|
-      @accept_users_name.push(User.find(relationship.user_id).name)
-      @tasks = current_group.tasks.order(status: :desc).order(time_limit: :asc).page(params[:page]).per(10)
-    end
+    @accept_users = relationships.map { |relationship| User.find(relationship.user_id) }
+    @tasks = current_group.tasks.order(status: :desc).order(time_limit: :asc).page(params[:page]).per(10)
   end
 
   def edit; end
