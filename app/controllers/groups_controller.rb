@@ -36,9 +36,9 @@ class GroupsController < ApplicationController
 
   def show
     session[:group_id] = params[:id]
-    @relationships = current_group.relationships.where(status: 'accept')
+    relationships = current_group.relationships.where(status: 'accept')
     @accept_users_name = []
-    @relationships.each do |relationship|
+    relationships.each do |relationship|
       @accept_users_name.push(User.find(relationship.user_id).name)
       @tasks = current_group.tasks.order(status: :desc).order(time_limit: :asc).page(params[:page]).per(10)
     end
