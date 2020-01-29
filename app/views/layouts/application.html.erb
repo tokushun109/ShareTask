@@ -2,7 +2,7 @@
 <html>
   <%= render 'layouts/head' %>
   <body>
-    <%= render 'layouts/navbar' ,invite_relationships: @invite_relationships, invite_groups: @invite_groups %>
+    <%= render 'layouts/navbar', invite_relationships: @invite_relationships, invite_groups: @invite_groups %>
     <div class="container footer-space">
       <%= render 'layouts/flash_messages' %>
       <%= yield %>
