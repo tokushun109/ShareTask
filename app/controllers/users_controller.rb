@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 class UsersController < ApplicationController
   before_action :require_user_logged_in, only: %i[edit update show search edit_pw group_users expulsion]
   before_action :set_user, only: %i[edit edit_pw update edit_pw]

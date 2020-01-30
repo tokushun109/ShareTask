@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       login(user)
       flash[:success] = 'ログインに成功しました'
       remember(user)
-      redirect_back_or(user)
+      redirect_back_or(groups_path)
     else
       flash.now[:danger] = 'ログインに失敗しました'
       render 'new'
