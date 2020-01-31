@@ -6,17 +6,14 @@
     <div class="col-lg-6 offset-lg-3">
     <%= form_with(model: @user, local: true) do |f| %>
     <%= render 'layouts/error_messages', model: f.object %>
-      
       <div class="form-group">
         <%= f.label :name, '氏名' %>
         <%= f.text_field :name, class: 'form-control' %>
       </div>
-      
       <div class="form-group">
         <%= f.label :user_name, 'ユーザーネーム' %>
         <%= f.text_field :user_name, class: 'form-control' %>
       </div>
-      
       <div class="form-group">
         <%= f.label :email, 'Email' %>
         <%= f.email_field :email, class: 'form-control' %>
@@ -26,12 +23,10 @@
         <%= f.label :password, 'パスワード' %>
         <%= f.password_field :password, class: 'form-control' %>
       </div>
-
       <div class="form-group">
         <%= f.label :password_confirmation, 'パスワード（確認）' %>
         <%= f.password_field :password_confirmation, class: 'form-control' %>
       </div>
-
       <%= f.submit '登録', class: 'btn btn-primary btn-block mb-5' %>
     <% end %>
   </div>
