@@ -23,6 +23,14 @@ class PasswordResetsController < ApplicationController
   end
 
   def update
+    if params[:user][:password].empty?
+     @user.errors.add(:password, :blank)
+     render 'edit'
+   elsif @user.update_attributes(user_params)
+     log_in @user
+     flash[:success] = "パスワードを再設定しました"
+     redirect_to @user
+   end
   end
 
   private
