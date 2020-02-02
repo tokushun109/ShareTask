@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   let(:user) { build(:user) }
+  let(:group) { build(:group) }
 
   context 'テストで使用するuserが有効な値の時' do
     it 'validになること' do
@@ -94,4 +95,19 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  # context 'userが削除された時' do
+  #   it '関連するgroupも削除されること' do
+  #     user.save
+  #     group.save
+  #     expect{ user.destroy }.to change {Group.count}.by(-1)
+  #   end
+  # end
+
+  describe '#authenticated?' do
+    it '値がnilのときfalseを返すこと' do
+      expect(user.authenticated?(:remember ,'')).to be_falsey
+    end
+  end
+
 end
