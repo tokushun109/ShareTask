@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(user_name: params[:session][:user_name])
     if user&.authenticate(params[:session][:password])
-      login(user)
+      log_in(user)
       flash[:success] = 'ログインに成功しました'
       remember(user)
       redirect_back_or(groups_path)
