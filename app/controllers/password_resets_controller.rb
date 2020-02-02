@@ -30,6 +30,8 @@ class PasswordResetsController < ApplicationController
      log_in @user
      flash[:success] = "パスワードを再設定しました"
      redirect_to @user
+   else
+     render 'edit'
    end
   end
 
