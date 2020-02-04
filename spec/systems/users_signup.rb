@@ -28,7 +28,7 @@ RSpec.describe 'users_signup', type: :system do
     }.to change( User, :count ).by(1)
     follow_redirect!
     expect(response.body).to include 'グループを作成して<br>タスクをメンバーと共有しましょう!'
-    expect(response.body).to have_selector 'div.alert'
+    expect(flash.empty?).to be_falsey
     expect(is_logged_in?).to be_truthy
   end
 end
