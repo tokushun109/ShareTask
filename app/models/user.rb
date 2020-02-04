@@ -12,10 +12,10 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
-  has_many :leader_groups, class_name: 'Group', foreign_key: :leader_user
+  has_many :leader_groups, class_name: 'Group', foreign_key: :leader_user_id
   has_many :relationships, dependent: :destroy
   has_many :groups, through: :relationships, source: :group
-  has_many :tasks, dependent: :destroy, foreign_key: :post_user
+  has_many :tasks, dependent: :destroy, foreign_key: :post_user_id
   has_many :post_groups, through: :tasks, source: :group
 
   def User.digest(string)

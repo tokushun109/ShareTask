@@ -12,22 +12,21 @@ User.create!(name:  "Example User",
              password:              "foobar",
              password_confirmation: "foobar")
 
-# 99.times do |n|
-#   name  = Faker::Name.name
-#   user_name = "example-#{n+1} User Name"
-#   email = "example-#{n+1}@railstutorial.org"
-#   password = "password"
-#   User.create!(name:  name,
-#                user_name: user_name,
-#                email: email,
-#                password:              password,
-#                password_confirmation: password)
-# end
+99.times do |n|
+  name  = Faker::Name.name
+  user_name = "example-#{n+1} User Name"
+  email = "example-#{n+1}@railstutorial.org"
+  password = "password"
+  User.create!(name:  name,
+               user_name: user_name,
+               email: email,
+               password:              password,
+               password_confirmation: password)
+end
 
-# マイクロポスト
-# usersの中から生成した順に6人の配列を作成する
 user = User.first
-# 50.times do
-  content = Faker::Job
-  user.leader_groups.create!(name: content)
-# end
+20.times do
+  content = Faker::Team.creature
+  group = user.leader_groups.create!(name: content)
+  user.relationships.create!(group_id: group.id, status: "accept")
+end

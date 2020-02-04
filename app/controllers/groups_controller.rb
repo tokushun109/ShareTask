@@ -61,6 +61,6 @@ def group_params
 end
 
 def correct_group
-  @group = current_user.groups.find_by(id: params[:id])
+  @group = current_user.leader_groups.find_by(id: params[:id])
   redirect_to groups_url unless @group
 end

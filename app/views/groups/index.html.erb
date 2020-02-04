@@ -16,7 +16,7 @@
         </tr>
         <% end %>
     </table>
-    <%= link_to fa_icon("plus", text: "新規グループ作成"), new_group_path,class: 'btn btn-primary' %>
     <%= paginate(@accept_groups) %>
+    <%= link_to fa_icon("plus", text: "新規グループ作成"), new_group_path,class: 'btn btn-primary' %>
   </div>
 </div>
