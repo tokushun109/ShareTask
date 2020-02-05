@@ -30,3 +30,14 @@ user = User.first
   group = user.leader_groups.create!(name: content)
   user.relationships.create!(group_id: group.id, status: "accept")
 end
+
+group = Group.first
+time_limit = Time.zone.now.since(3.days)
+20.times do
+  name = Faker::Job.seniority
+  user.tasks.create(name: name,
+                    in_charge: "Example User",
+                    time_limit: time_limit,
+                    status: 'imcomplete',
+                    post_group_id: group.id)
+end
