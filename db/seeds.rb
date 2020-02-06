@@ -12,7 +12,7 @@ User.create!(name:  "Example User",
              password:              "foobar",
              password_confirmation: "foobar")
 
-99.times do |n|
+20.times do |n|
   name  = Faker::Name.name
   user_name = "example-#{n+1} User Name"
   email = "example-#{n+1}@railstutorial.org"
@@ -25,7 +25,7 @@ User.create!(name:  "Example User",
 end
 
 user = User.first
-20.times do
+11.times do
   content = Faker::Team.creature
   group = user.leader_groups.create!(name: content)
   user.relationships.create!(group_id: group.id, status: "accept")
@@ -33,11 +33,19 @@ end
 
 group = Group.first
 time_limit = Time.zone.now.since(3.days)
-20.times do
+11.times do
   name = Faker::Job.seniority
   user.tasks.create(name: name,
                     in_charge: "Example User",
                     time_limit: time_limit,
                     status: 'imcomplete',
                     post_group_id: group.id)
+end
+
+task = Task.first
+n = 5
+20.times do
+  task.records.create(progress: "#{n}%",
+                    supplement: "Example")
+  n += 5
 end

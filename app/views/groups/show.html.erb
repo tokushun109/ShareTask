@@ -46,7 +46,7 @@
       </tr>
       <% end %>
   </table>
+  <%= paginate(@tasks) %>
   <%= link_to fa_icon("plus", text: "新規タスク追加"), new_task_path, class: 'btn btn-primary btn-block' %>
   <%= link_to 'グループ一覧へ戻る≫', groups_path %>
-  <%= paginate(@tasks) %>
 </div>
