@@ -12,6 +12,14 @@ li{
   list-style-type:none;
 }
 
+.float-l{
+  float:left;
+}
+
+.btn-list .badge{
+  padding: .10rem .25rem;
+}
+
 @media(max-width: 670px){
   h1{
     font-size:120%;

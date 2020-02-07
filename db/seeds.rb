@@ -38,7 +38,7 @@ time_limit = Time.zone.now.since(3.days)
   user.tasks.create(name: name,
                     in_charge: "Example User",
                     time_limit: time_limit,
-                    status: 'imcomplete',
+                    status: 'incomplete',
                     post_group_id: group.id)
 end
 

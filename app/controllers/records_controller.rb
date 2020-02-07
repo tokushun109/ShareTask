@@ -42,7 +42,7 @@ end
 private
 
 def record_params
-  params.require(:record).permit(:progress, :supplement)
+  params.require(:record).permit(:progress, :supplement, :picture)
 end
 
 def correct_record

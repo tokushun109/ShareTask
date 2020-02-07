@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_06_042621) do
+ActiveRecord::Schema.define(version: 2020_02_07_073244) do
 
   create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -20,13 +20,23 @@ ActiveRecord::Schema.define(version: 2020_02_06_042621) do
     t.index ["leader_user_id"], name: "index_groups_on_leader_user_id"
   end
 
+  create_table "pictures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "record_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.bigint "image_file_size"
+    t.datetime "image_updated_at"
+    t.index ["record_id"], name: "index_pictures_on_record_id"
+  end
+
   create_table "records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "progress"
     t.string "supplement"
     t.bigint "task_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "picture"
     t.index ["task_id"], name: "index_records_on_task_id"
   end
 
@@ -67,6 +77,7 @@ ActiveRecord::Schema.define(version: 2020_02_06_042621) do
   end
 
   add_foreign_key "groups", "users", column: "leader_user_id"
+  add_foreign_key "pictures", "records"
   add_foreign_key "records", "tasks"
   add_foreign_key "relationships", "groups"
   add_foreign_key "relationships", "users"
