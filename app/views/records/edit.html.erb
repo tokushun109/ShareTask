@@ -6,20 +6,32 @@
   <div class="col-sm-6 offset-sm-3">
     <%= form_with(model: @record, local: true) do |f| %>
     <%= render 'layouts/error_messages', model: f.object %>
-      
       <div class="form-group">
         <%= f.label :progress, '進捗度' %>
         <%= f.text_field :progress, class: 'form-control' %>
       </div>
-
       <div class="form-group">
         <%= f.label :supplement, '補足' %>
         <%= f.text_area :supplement, class: 'form-control' %>
       </div>
-
+      <div class="form-group">
+        <%= f.file_field :images, multiple: true %><br>
+      </div>
+      <div class="form-group">
+        <% if @record.images.attached? %>
+          <p>登録画像(※チェックをつけて変更で削除)</p>
+          <% @record.images.each do |image| %>
+            <ul>
+              <li>
+              <%= f.check_box :image_ids, {:multiple => true}, image.id, nil %>
+              <%= image.filename %>
+              </li>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
       <%= f.submit '変更', class: 'btn btn-primary btn-block' %>
     <% end %>
     <%= link_to '進捗一覧へ戻る≫', current_task %>
   </div>
 </div>
-

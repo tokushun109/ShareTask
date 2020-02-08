@@ -16,14 +16,28 @@
       <tr>
         <th class="text-center">記入日</th>
         <th class="text-center">進捗度(%)</th>
-        <th class="text-center">補足</th>
+        <th class="text-center">補足/画像</th>
         <th class="text-center">操作</th>
       </tr>
       <% @records.each do |record| %>
         <tr>
-          <td class="text-center"><%= set_time(record.created_at)  %></td>
-          <td class="text-center"><%= record.progress  %></td>
-          <td class="text-center"><%= record.supplement  %></td>
+          <td class="text-center"><%= set_time(record.created_at) %></td>
+          <td class="text-center"><%= record.progress %></td>
+          <td class="text-center">
+            <%= record.supplement %>
+            <% if record.images.attached? %>
+              <% record.images.each do |image| %>
+                <ul class="mt-2">
+                  <li>
+                    <%= link_to image, 'data-lightbox': image do  %>
+                      <%= image_tag image, :size =>'60x40' %>
+                    <% end %>
+                  </li>
+                </ul>
+              <% end %>
+
+            <% end %>
+          </td>
           <td class="text-center btn-list">
             <%= link_to fa_icon("edit", text: "編集"), edit_record_path(record) , class:'badge badge-info mb-2 pt-2 pb-2' %>
             <%= form_with(model: record, local: true, method: :delete, data: { confirm: "本当に削除しますか?" }) do |f| %>

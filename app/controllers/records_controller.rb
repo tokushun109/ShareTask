@@ -24,6 +24,12 @@ class RecordsController < ApplicationController
 
   def update
     if @record.update(record_params)
+      if params[:record][:image_ids]
+        params[:record][:image_ids].each do |image_id|
+          image = @record.images.find(image_id)
+          image.purge
+        end
+      end
       flash[:success] = '進捗を変更しました'
       redirect_to current_task
     else
@@ -42,7 +48,7 @@ end
 private
 
 def record_params
-  params.require(:record).permit(:progress, :supplement, :picture)
+  params.require(:record).permit(:progress, :supplement, :picture, images: [])
 end
 
 def correct_record

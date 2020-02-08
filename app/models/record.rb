@@ -3,6 +3,6 @@
 class Record < ApplicationRecord
   validates :supplement, length: { maximum: 255 }
   validates :progress, presence: true, length: { maximum: 50 }
-
   belongs_to :task
+  has_many_attached :images
 end
