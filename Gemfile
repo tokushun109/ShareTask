@@ -19,8 +19,9 @@ gem 'ransack'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
-gem "rack", ">= 2.0.8"
+gem 'rack', '>= 2.0.8'
 gem 'faker'
+gem 'chart-js-rails', '~> 0.1.4'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

@@ -6,7 +6,7 @@
     <%= form_with(model: @record, local: true) do |f| %>
     <%= render 'layouts/error_messages', model: f.object %>
       <div class="form-group">
-        <%= f.label :progress, '進捗度(%)' %>
+        <%= f.label :progress, '進捗度(%)(0~100まで入力可能)' %>
         <%= f.text_field :progress, class: 'form-control' %>
       </div>
       <div class="form-group">

@@ -45,7 +45,7 @@ end
 task = Task.first
 n = 5
 20.times do
-  task.records.create(progress: "#{n}%",
+  task.records.create(progress: n,
                     supplement: "Example")
   n += 5
 end
