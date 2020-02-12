@@ -28,6 +28,9 @@ class TasksController < ApplicationController
   def show
     session[:task_id] = params[:id]
     @records = current_task.records.order(id: :desc).page(params[:page]).per(10)
+    @graph_y = current_task.records.map(&:progress)
+    @graph_x = current_task.records.map{|record| record.created_at.strftime('%m/%d')}
+
   end
 
   def edit; end

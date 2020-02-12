@@ -11,52 +11,44 @@
   <p><%= "期限 : #{set_time(current_task.time_limit)}まで" %></p>
   <%= link_to fa_icon("edit", text: "タスクを編集"), edit_task_path(@task) , class:'badge badge-info user-invite-btn' %>
   <%= link_to fa_icon("trash-alt", text: "タスクを削除"), @task, method: :delete, class:'badge badge-secondary', data: { confirm: "本当に削除しますか?" } %>
-  <div class="graph">
-  <canvas id="myLineChart"></canvas>
+  <div class="graph mt-4 mb-4">
+    <canvas id="myLineChart"></canvas>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
-  <script>
-  var ctx = document.getElementById("myLineChart");
-  var myLineChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ['8月1日', '8月2日', '8月3日', '8月4日', '8月5日', '8月6日', '8月7日'],
-      datasets: [
-        {
-          label: '最高気温(度）',
-          data: [35, 34, 37, 35, 34, 35, 34, 25],
-          borderColor: "rgba(255,0,0,1)",
-          backgroundColor: "rgba(0,0,0,0)"
-        },
-        {
-          label: '最低気温(度）',
-          data: [25, 27, 27, 25, 26, 27, 25, 21],
-          borderColor: "rgba(0,0,255,1)",
-          backgroundColor: "rgba(0,0,0,0)"
-        }
-      ],
-    },
-    options: {
-      title: {
-        display: true,
-        text: '気温（8月1日~8月7日）'
+    <script>
+    var graph_y = <%= @graph_y %>;
+    var graph_x = <%== @graph_x %>;
+    var ctx = document.getElementById("myLineChart");
+    var myLineChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: graph_x,
+        datasets: [
+          {
+            label: '進捗度',
+            data: graph_y,
+            borderColor: "rgba(255,0,0,1)",
+            backgroundColor: "rgba(0,0,0,0)"
+          },
+        ],
       },
-      scales: {
-        yAxes: [{
-          ticks: {
-            suggestedMax: 40,
-            suggestedMin: 0,
-            stepSize: 10,
-            callback: function(value, index, values){
-              return  value +  '度'
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              suggestedMax: 100,
+              suggestedMin: 0,
+              stepSize: 25,
+              callback: function(value, index, values){
+                return  value +  '%'
+              }
             }
-          }
-        }]
-      },
-    }
-  });
-  </script>
+          }],
+        },
+      }
+    });
+    </script>
   </div>
-   <h2 class="mt-5">進捗一覧</h2>
+   <h2>進捗一覧</h2>
     <table class="table table-striped table-bordered">
       <tr>
         <th class="text-center">記入日</th>
