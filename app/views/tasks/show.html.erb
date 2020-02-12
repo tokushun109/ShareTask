@@ -15,37 +15,9 @@
     <canvas id="myLineChart"></canvas>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
     <script>
-    var graph_y = <%= @graph_y %>;
-    var graph_x = <%== @graph_x %>;
-    var ctx = document.getElementById("myLineChart");
-    var myLineChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: graph_x,
-        datasets: [
-          {
-            label: '進捗度',
-            data: graph_y,
-            borderColor: "rgba(255,0,0,1)",
-            backgroundColor: "rgba(0,0,0,0)"
-          },
-        ],
-      },
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              suggestedMax: 100,
-              suggestedMin: 0,
-              stepSize: 25,
-              callback: function(value, index, values){
-                return  value +  '%'
-              }
-            }
-          }],
-        },
-      }
-    });
+      graph_y = <%= @graph_y %>
+      graph_x = <%== @graph_x %>
+      draw_graph();
     </script>
   </div>
    <h2>進捗一覧</h2>
