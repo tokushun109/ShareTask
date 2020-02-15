@@ -33,11 +33,6 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, User.digest(remember_token))
   end
 
-  # def authenticated?(remember_token)
-  #   return false if remember_digest.nil?
-  #   BCrypt::Password.new(remember_digest).is_password?(remember_token)
-  # end
-
   def authenticated?(attribute, token)
     digest = send("#{attribute}_digest")
     return false if digest.nil?
@@ -55,6 +50,10 @@ class User < ApplicationRecord
 
   def send_password_reset_email
     UserMailer.password_reset(self).deliver_now
+  end
+
+  def send_invitation_email(group)
+    UserMailer.invitation(self, group).deliver_now
   end
 
   def password_reset_expired?
