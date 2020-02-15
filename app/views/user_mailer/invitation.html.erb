@@ -2,4 +2,4 @@
 
 <p>下記のリンクからグループに参加できます。</p>
 <p>※参加を辞退する場合はリンク内で辞退を選んでください</p>
-<%= link_to "グループの参加はこちらから", invite_relationships_url(group_id: @group.id) %>
+<%= link_to "グループの参加はこちらから", invite_relationships_url(user_id: @user.id, group_id: @group.id) %>

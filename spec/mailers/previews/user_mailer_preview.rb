@@ -11,7 +11,8 @@ class UserMailerPreview < ActionMailer::Preview
   # Preview this email at http://localhost:3000/rails/mailers/user_mailer/invitation
   def invitation
     user = User.first
-    UserMailer.invitation(user)
+    group = Group.first
+    UserMailer.invitation(user, group)
   end
 
 end

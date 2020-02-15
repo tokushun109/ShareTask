@@ -11,6 +11,7 @@ class UserMailer < ApplicationMailer
   end
 
   def invitation(user, group)
+    @user = user
     @group = group
     mail to: user.email, subject: "グループに招待されています。"
   end

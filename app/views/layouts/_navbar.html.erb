@@ -22,6 +22,7 @@
             <% invite_groups.each do |invite_group|%>
               <li class="dropdown-item">
                 <%= form_with(url: invite_relationships_path, local: true, method: :get) do |f| %>
+                  <%= hidden_field_tag :user_id, current_user.id %>
                   <%= hidden_field_tag :group_id, invite_group.id %>
                   <%= f.submit "#{invite_group.name}からの招待を確認" %>
                 <% end %>

@@ -13,7 +13,12 @@ class RelationshipsController < ApplicationController
   end
 
   def invite
-    @group = Group.find_by(id: params[:group_id])
+    user = User.find_by(id: params[:user_id])
+    unless current_user == user
+      redirect_to groups_url
+    else
+      @group = Group.find_by(id: params[:group_id])
+    end
   end
 
   def accept
