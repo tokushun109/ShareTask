@@ -7,11 +7,7 @@ class RelationshipsController < ApplicationController
     user = User.find(params[:user_id])
     @relationship = current_group.relationships.build(user_id: user.id, status: 'invite')
     @relationship.save
-<<<<<<< HEAD
     user.send_invitation_email(current_group)
-=======
-    user.send_invitation_email
->>>>>>> fce5f5946249e7bbeb371ad61511217ba659b651
     flash[:success] = '招待メールを送信しました'
     redirect_to current_group
   end

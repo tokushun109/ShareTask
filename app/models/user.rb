@@ -52,13 +52,8 @@ class User < ApplicationRecord
     UserMailer.password_reset(self).deliver_now
   end
 
-<<<<<<< HEAD
   def send_invitation_email(group)
     UserMailer.invitation(self, group).deliver_now
-=======
-  def send_invitation_email
-    UserMailer.invitation(self).deliver_now
->>>>>>> fce5f5946249e7bbeb371ad61511217ba659b651
   end
 
   def password_reset_expired?
