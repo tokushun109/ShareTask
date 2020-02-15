@@ -10,8 +10,13 @@ class UserMailer < ApplicationMailer
     mail to: user.email, subject: "パスワードの再設定用のリンクを送信いたします。"
   end
 
+<<<<<<< HEAD
   def invitation(user, group)
     @group = group
+=======
+  def invitation(user)
+    @user = user
+>>>>>>> fce5f5946249e7bbeb371ad61511217ba659b651
     mail to: user.email, subject: "グループに招待されています。"
   end
 
