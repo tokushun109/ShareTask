@@ -26,7 +26,9 @@ class RelationshipsController < ApplicationController
     @relationship = group.relationships.find_by(user_id: current_user.id)
     @relationship.status = 'accept'
     @relationship.save
-    group.users.each(&send_acception_email(:current_user, :current_group))
+    group.users.each do |user|
+      user.send_acception_email(current_user, current_group)
+    end
     flash[:success] = 'グループに参加しました'
     redirect_to groups_url
   end
