@@ -15,4 +15,13 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.invitation(user, group)
   end
 
+  # Preview this email at http://localhost:3000/rails/mailers/user_mailer/acception
+  def acception
+    group_user = User.first
+    accept_user = User.second
+    group = Group.first
+    UserMailer.acception(group_user, accept_user, group)
+  end
+
+
 end

@@ -56,6 +56,10 @@ class User < ApplicationRecord
     UserMailer.invitation(self, group).deliver_now
   end
 
+  def send_acception_email(accept_user, group)
+    UserMailer.acception(self, accept_user, group).deliver_now
+  end
+
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
   end
