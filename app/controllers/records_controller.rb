@@ -1,8 +1,9 @@
 # frozen_string_literal: true
-
+require "google/cloud/vision"
+require "base64"
 class RecordsController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_record, only: %i[edit update destroy]
+  before_action :correct_record, only: %i[edit update destroy text]
 
   def new
     @record = Record.new
@@ -42,6 +43,16 @@ class RecordsController < ApplicationController
     @record.destroy
     flash[:success] = '進捗を削除しました'
     redirect_to current_task
+  end
+
+  def text
+    @image = @record.images.find(params[:record][:image_id])
+    image_annotator = Google::Cloud::Vision::ImageAnnotator.new
+    @response = image_annotator.text_detection(
+      image: url_for(@image),
+      max_results: 1 # optional, defaults to 10
+    )
+    binding.pry
   end
 end
 

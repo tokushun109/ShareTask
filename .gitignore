@@ -25,3 +25,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+/sharetask-268603-cabee1f5eeaf.json
+
+/.env

@@ -34,6 +34,10 @@ Rails.application.routes.draw do
       put :incomplete
     end
   end
-  resources :records, only: %i[new create edit update destroy]
+  resources :records, only: %i[new create edit update destroy] do
+    member do
+      put :text
+    end
+  end
   resources :password_resets, only: %i[new create edit update]
 end

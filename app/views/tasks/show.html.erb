@@ -42,6 +42,12 @@
                       <%= image_tag image, :size =>'60x40' %>
                     <% end %>
                   </li>
+                  <li>
+                    <%= form_with(model: record, local: true, url: text_record_path(record), method: :put) do |f| %>
+                      <%= f.hidden_field :image_id, value: image.id %>
+                      <%= f.submit '文字抽出', class: 'btn btn-primary btn-block' %>
+                    <% end %>
+                  </li>
                 </ul>
               <% end %>
             <% end %>
