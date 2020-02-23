@@ -14,7 +14,6 @@ class RecordsController < ApplicationController
     if @record.save
       flash[:success] = '新しい進捗を追加しました'
       redirect_to current_task
-
     else
       flash.now[:danger] = '進捗を追加できませんでした'
       render :new
@@ -48,11 +47,11 @@ class RecordsController < ApplicationController
   def text
     @image = @record.images.find(params[:record][:image_id])
     image_annotator = Google::Cloud::Vision::ImageAnnotator.new
+    image_path = ActiveStorage::Blob.service.path_for(@image.key)
     @response = image_annotator.text_detection(
-      image: url_for(@image),
+      image: image_path,
       max_results: 1 # optional, defaults to 10
     )
-    binding.pry
   end
 end
 

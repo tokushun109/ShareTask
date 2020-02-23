@@ -45,7 +45,7 @@
                   <li>
                     <%= form_with(model: record, local: true, url: text_record_path(record), method: :put) do |f| %>
                       <%= f.hidden_field :image_id, value: image.id %>
-                      <%= f.submit '文字抽出', class: 'btn btn-primary btn-block' %>
+                      <%= button_tag :type => "submit", :class =>"badge badge-secondary pt-2 pb-2" do %>文字抽出<% end %>
                     <% end %>
                   </li>
                 </ul>
