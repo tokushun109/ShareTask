@@ -1,7 +1,7 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-window.draw_graph = ->
+window.line_graph = ->
     ctx = document.getElementById("myLineChart")
     myLineChart = new Chart(ctx, {
       type: 'line',
@@ -26,8 +26,8 @@ window.draw_graph = ->
           }],
           yAxes: [{
             ticks: {
-              suggestedMax: 100,
-              suggestedMin: 0,
+              max: 100,
+              min: 0,
               stepSize: 25,
               callback: (value, index, values) ->
                 return  value +  '%'
