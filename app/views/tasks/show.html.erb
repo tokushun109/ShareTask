@@ -25,21 +25,22 @@
       <tr>
         <th class="text-center">記入日</th>
         <th class="text-center">進捗度(%)</th>
-        <th class="text-center">補足/画像</th>
+        <th class="text-center">補足</th>
+        <th class="text-center">画像</th>
         <th class="text-center">操作</th>
       </tr>
       <% @records.each do |record| %>
         <tr>
           <td class="text-center"><%= set_time(record.created_at) %></td>
           <td class="text-center"><%= record.progress %></td>
+          <td class="text-center"><%= record.supplement %></td>
           <td class="text-center">
-            <%= record.supplement %>
             <% if record.images.attached? %>
               <% record.images.each do |image| %>
-                <ul class="mt-2">
+                <ul class="mt-2 transcription_list">
                   <li>
                     <%= link_to image, 'data-lightbox': image do  %>
-                      <%= image_tag image, :size =>'60x40' %>
+                      <%= image_tag image %>
                     <% end %>
                   </li>
                   <li>

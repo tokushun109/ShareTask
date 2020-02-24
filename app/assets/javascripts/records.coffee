@@ -18,6 +18,12 @@ window.draw_graph = ->
       },
       options: {
         scales: {
+          xAxes: [{
+              type: 'time',
+              time: {
+                unit: 'day'
+              }
+          }],
           yAxes: [{
             ticks: {
               suggestedMax: 100,

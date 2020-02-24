@@ -28,9 +28,21 @@ class TasksController < ApplicationController
   def show
     session[:task_id] = params[:id]
     @records = current_task.records.order(id: :desc).page(params[:page]).per(10)
-    @graph_y = current_task.records.map(&:progress)
-    @graph_x = current_task.records.map{|record| record.created_at.strftime('%m/%d')}
-
+    before_created_at = nil
+    @graph_y = []
+    @graph_x = []
+    current_task.records.each do |record|
+      if record.created_at.strftime('%Y/%m/%d') != before_created_at
+        @graph_y << record.progress
+        @graph_x << record.created_at.strftime('%Y/%m/%d')
+      elsif record.created_at.strftime('%Y/%m/%d') == before_created_at
+        @graph_y.pop()
+        @graph_x.pop()
+        @graph_y << record.progress
+        @graph_x << record.created_at.strftime('%Y/%m/%d')
+      end
+      before_created_at = record.created_at.strftime('%Y/%m/%d')
+    end
   end
 
   def edit; end
