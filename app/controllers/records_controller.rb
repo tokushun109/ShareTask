@@ -13,6 +13,9 @@ class RecordsController < ApplicationController
     @record = current_task.records.build(record_params)
     if @record.save
       flash[:success] = '新しい進捗を追加しました'
+      if @record.progress == 100
+        current_task.update_attribute(:status, 'complete')
+      end
       redirect_to current_task
     else
       flash.now[:danger] = '進捗を追加できませんでした'
@@ -31,6 +34,9 @@ class RecordsController < ApplicationController
         end
       end
       flash[:success] = '進捗を変更しました'
+      if @record.progress == 100
+        current_task.update_attribute(:status, 'complete')
+      end
       redirect_to current_task
     else
       flash.now[:danger] = '進捗を変更できませんでした'
