@@ -28,32 +28,27 @@
         <th class="text-center">記入日</th>
         <th class="text-center">進捗度(%)</th>
         <th class="text-center">補足</th>
-        <th class="text-center">画像</th>
         <th class="text-center">操作</th>
       </tr>
       <% @records.each do |record| %>
         <tr>
           <td class="text-center"><%= set_time(record.created_at) %></td>
           <td class="text-center"><%= record.progress %></td>
-          <td class="text-center"><%= record.supplement %></td>
           <td class="text-center">
-            <% if record.images.attached? %>
-              <% record.images.each do |image| %>
-                <ul class="mt-2">
-                  <li>
+            <ul>
+              <li>
+                <%= record.supplement %>
+              </li>
+              <li>
+                <% if record.images.attached? %>
+                  <% record.images.each do |image| %>
                     <%= link_to image, 'data-lightbox': image do  %>
-                      <%= image_tag image, :class =>"mb-2" %>
+                      <%= image_tag image %>
                     <% end %>
-                  </li>
-                  <li>
-                    <%= form_with(model: record, local: true, url: text_record_path(record), method: :put) do |f| %>
-                      <%= f.hidden_field :image_id, value: image.id %>
-                      <%= button_tag :type => "submit", :class =>"badge badge-secondary pt-2 pb-2" do %>文字抽出<% end %>
-                    <% end %>
-                  </li>
-                </ul>
-              <% end %>
-            <% end %>
+                  <% end %>
+                <% end %>
+              </li>
+            </ul>
           </td>
           <td class="text-center btn-list">
             <%= link_to fa_icon("edit", text: "編集"), edit_record_path(record) , class:'badge badge-info mb-2 pt-2 pb-2' %>
@@ -61,6 +56,16 @@
               <%= hidden_field_tag :id, record.id %>
               <%= button_tag :type => "submit", :class =>"badge badge-secondary pt-2 pb-2" do %>
                 <i class="fa fa-trash-alt"></i> 削除
+              <% end %>
+            <% end %>
+            <% if record.images.attached? %>
+              <% record.images.each do |image| %>
+                <%= form_with(model: record, local: true, url: text_record_path(record), method: :put) do |f| %>
+                  <%= f.hidden_field :image_id, value: image.id %>
+                  <%= button_tag :type => "submit", :class =>"badge badge-success mt-2 pt-2 pb-2" do %>
+                    <i class="fas fa-file-alt"></i> 文字抽出
+                  <% end %>
+                <% end %>
               <% end %>
             <% end %>
           </td>
