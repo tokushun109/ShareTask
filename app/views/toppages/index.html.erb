@@ -9,7 +9,7 @@
   <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
     <%= f.hidden_field :user_name, value: 'test_user' %>
     <%= f.hidden_field :password, value: 'testlogin' %>
-    <%= f.submit 'テストユーザーとしてログインして使ってみる', class: 'btn btn-info signup-btn mt-2' %>
+    <%= f.submit 'テストユーザーとしてログイン', class: 'btn btn-info signup-btn mt-2' %>
   <% end %>
   <div class="how_to_use">
     <%= link_to "使い方を確認する≫" , how_to_use_path %>

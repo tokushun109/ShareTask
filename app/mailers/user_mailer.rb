@@ -13,7 +13,7 @@ class UserMailer < ApplicationMailer
   def invitation(user, group)
     @user = user
     @group = group
-    mail to: user.email, subject: "【ShareTask】#{@group}グループに招待されています。"
+    mail to: user.email, subject: "【ShareTask】#{@group.name}グループに招待されています。"
   end
 
   def acception(group_user, accept_user, group)
