@@ -39,10 +39,10 @@
           <td class="text-center">
             <% if record.images.attached? %>
               <% record.images.each do |image| %>
-                <ul class="mt-2 transcription_list">
+                <ul class="mt-2">
                   <li>
                     <%= link_to image, 'data-lightbox': image do  %>
-                      <%= image_tag image %>
+                      <%= image_tag image, :class =>"mb-2" %>
                     <% end %>
                   </li>
                   <li>

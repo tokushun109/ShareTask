@@ -1,9 +1,17 @@
-<%= link_to @image, 'data-lightbox': @image do  %>
-  <%= image_tag @image, :size =>'240x160' %>
-<% end %>
-
-<% @response.responses.each do |res| %>
-  <% res.text_annotations.each do |text| %>
-    <%= text.description %>
-  <% end %>
-<% end %>
+<div class="row transcription">
+  <div class="col-md-6 ">
+    <p>元画像</p>
+    <%= link_to @image, 'data-lightbox': @image do  %>
+      <%= image_tag @image %>
+    <% end %>
+  </div>
+  <div class="col-md-6 ">
+    <p>テキスト</p>
+    <% @response.responses.each do |res| %>
+      <% res.text_annotations.each do |text| %>
+        <%= text.description %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<%= link_to '進捗一覧へ戻る>>', current_task %>

@@ -15,6 +15,13 @@
   word-wrap: break-word;
 }
 
+.graph{
+  p{
+    text-align: center;
+    color: gray;
+  }
+}
+
 @media(max-width: 1000px){
   .table{
     font-size:80%;
