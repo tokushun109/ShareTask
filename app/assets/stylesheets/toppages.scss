@@ -32,7 +32,7 @@
   background-color:rgba(50, 50, 50, 0.8);
   color:white;
   padding: 5px 1rem;
-  font-size:0.7rem;
+  font-size:12px;
 }
 
 .signup-btn{
@@ -46,4 +46,10 @@
   position: relative;/*←相対位置*/
   padding-bottom: 120px;/*←footerの高さ*/
   box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
+}
+
+@media(max-width: 670px){
+  .jumbotron{
+    font-size:7px;
+  }
 }
