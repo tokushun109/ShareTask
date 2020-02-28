@@ -5,6 +5,59 @@
       <p class="top_p">グループ内での仕事を見える化して業務効率をあげよう！</p>
     </div>
   </div>
+</div>
+<div class="content">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+      <%= link_to "登録して使ってみる" , signup_path, class: 'btn btn-primary signup-btn' %>
+      <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
+        <%= f.hidden_field :user_name, value: 'test_user' %>
+        <%= f.hidden_field :password, value: 'testlogin' %>
+        <%= f.submit 'テストユーザーとしてログイン', class: 'btn btn-info signup-btn mt-2' %>
+      <% end %>
+      <div class="how_to_use">
+        <%= link_to "使い方を確認する≫" , how_to_use_path %>
+      </div>
+    </div>
+  </div>
+  <div class="can-do">
+    <h3 class="title pt-3 pb-3 mt-5 mb-5" >Share Taskでできること</h3>
+    <div class="row">
+      <div class="col-sm-4 mb-5">
+        <%= image_tag "member.jpeg" %>
+        <p class="mt-3">グループメンバーと<br>タスクを共有できる</p>
+      </div>
+      <div class="col-sm-4 mb-5">
+        <%= image_tag "presen.jpeg" %>
+        <p class="mt-3">誰が、何を、どこまで<br>やったかが一目でわかる</p>
+      </div>
+      <div class="col-sm-4 mb-5">
+        <%= image_tag "date.jpeg" %>
+        <p class="mt-3">履歴が残って<br>進捗がわかりやすい</p>
+      </div>
+    </div>
+  </div>
+  <div class="function">
+    <h3 class="title pt-3 pb-3 mt-5 mb-5" >Share Taskの機能</h3>
+    <div class="row">
+      <div class="col-sm-3 col-6 mb-5">
+        <%= image_tag "invite.jpeg" %>
+        <p class="mt-3">グループへのメンバー招待</p>
+      </div>
+      <div class="col-sm-3 col-6 mb-5">
+        <%= image_tag "gragh.jpeg" %>
+        <p class="mt-3">進捗のグラフ表示</p>
+      </div>
+      <div class="col-sm-3 col-6 mb-5">
+        <%= image_tag "image.jpeg" %>
+        <p class="mt-3">進捗に対して画像保存</p>
+      </div>
+      <div class="col-sm-3 col-6 mb-5">
+        <%= image_tag "text.jpeg" %>
+        <p class="mt-3">画像からテキストを抽出</p>
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-lg-6 offset-lg-3">
       <%= link_to "登録して使ってみる" , signup_path, class: 'btn btn-primary signup-btn' %>

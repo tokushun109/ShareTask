@@ -1,4 +1,5 @@
 // 共通レイアウト
+$sky: #3aabd2;
 
 h1,p{
   word-wrap: break-word;
@@ -22,6 +23,10 @@ li{
 
 img{
   width: 70%;
+}
+
+.button{
+  border-style:none;
 }
 
 @media(max-width: 670px){
