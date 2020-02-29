@@ -45,6 +45,12 @@
                     <%= link_to image, 'data-lightbox': image do  %>
                       <%= image_tag image %>
                     <% end %>
+                    <%= form_with(model: record, local: true, url: text_record_path(record), method: :put) do |f| %>
+                      <%= f.hidden_field :image_id, value: image.id %>
+                      <%= button_tag :type => "submit", :class =>"badge badge-success pt-2 pb-2 mb-2" do %>
+                        <i class="fas fa-file-alt"></i> 文字抽出
+                      <% end %>
+                    <% end %>
                   <% end %>
                 <% end %>
               </li>
@@ -56,16 +62,6 @@
               <%= hidden_field_tag :id, record.id %>
               <%= button_tag :type => "submit", :class =>"badge badge-secondary pt-2 pb-2" do %>
                 <i class="fa fa-trash-alt"></i> 削除
-              <% end %>
-            <% end %>
-            <% if record.images.attached? %>
-              <% record.images.each do |image| %>
-                <%= form_with(model: record, local: true, url: text_record_path(record), method: :put) do |f| %>
-                  <%= f.hidden_field :image_id, value: image.id %>
-                  <%= button_tag :type => "submit", :class =>"badge badge-success mt-2 pt-2 pb-2" do %>
-                    <i class="fas fa-file-alt"></i> 文字抽出
-                  <% end %>
-                <% end %>
               <% end %>
             <% end %>
           </td>

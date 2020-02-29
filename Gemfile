@@ -24,6 +24,8 @@ gem 'faker'
 gem 'chart-js-rails', '~> 0.1.4'
 gem 'dotenv-rails'
 gem 'google-cloud-vision'
+gem 'aws-sdk-s3', require: false
+gem 'mini_magick'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -50,6 +52,4 @@ end
 
 group :production do
   gem 'pg', '>= 0.18', '< 2.0'
-  gem 'mini_magick'
-  gem 'aws-sdk-s3', require: false
 end
