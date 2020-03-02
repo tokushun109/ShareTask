@@ -47,7 +47,7 @@
                     <% end %>
                     <%= form_with(model: record, local: true, url: text_record_path(record), method: :put) do |f| %>
                       <%= f.hidden_field :image_id, value: image.id %>
-                      <%= button_tag :type => "submit", :class =>"badge badge-success pt-2 pb-2 mb-2" do %>
+                      <%= button_tag :type => "submit", :class =>"badge badge-success pt-2 pb-2 mt-2 mb-2" do %>
                         <i class="fas fa-file-alt"></i> 文字抽出
                       <% end %>
                     <% end %>
