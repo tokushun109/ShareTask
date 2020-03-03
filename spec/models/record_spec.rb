@@ -26,9 +26,15 @@ RSpec.describe Record, type: :model do
         expect(record).to be_invalid
       end
     end
-    context '51文字以上の場合' do
+    context '0未満の場合' do
       it 'invalidになること' do
-        record.progress = 'a' * 51
+        record.progress = -1
+        expect(record).to be_invalid
+      end
+    end
+    context '100より大きい場合' do
+      it 'invalidになること' do
+        record.progress = 101
         expect(record).to be_invalid
       end
     end
