@@ -32,7 +32,7 @@ user = User.first
 end
 
 group = Group.first
-time_limit = Time.zone.now.since(3.days)
+time_limit = Time.zone.now
 11.times do
   name = Faker::Job.seniority
   user.tasks.create(name: name,
@@ -42,10 +42,16 @@ time_limit = Time.zone.now.since(3.days)
                     post_group_id: group.id)
 end
 
-task = Task.first
+task1 = Task.first
 n = 5
-20.times do
-  task.records.create(progress: n,
-                    supplement: "Example")
+19.times do
+  task1.records.create(progress: n,
+                    supplement: "Example",
+                  created_at: n.days.since)
   n += 5
 end
+
+task2 = Task.second
+task2.records.create(progress: 50,
+                  supplement: "Example",
+                created_at: 5.days.since)
