@@ -49,7 +49,6 @@ test:
 #
 production:
   adapter: mysql2
-  encoding: unicode
   pool: 5
   database: share-task_production
   username: share-task
