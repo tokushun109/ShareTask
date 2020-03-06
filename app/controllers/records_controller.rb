@@ -1,9 +1,15 @@
 # frozen_string_literal: true
-require "google/cloud/vision"
-require "base64"
+# from httplib2 import Http
+# from oauth2client import client
+# from googleapiclient.discovery import build
+# CONTENTS = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+# CREDS = client.Credentials.new_from_json(CONTENTS)
+# SERVICE = build('calendar', 'v3', http=CREDS.authorize(Http()))
+
 class RecordsController < ApplicationController
   before_action :require_user_logged_in
   before_action :correct_record, only: %i[edit update destroy text]
+  require "google/cloud/vision"
 
   def new
     @record = Record.new
@@ -55,8 +61,9 @@ class RecordsController < ApplicationController
   end
 
   def text
+
     @image = @record.images.find(params[:record][:image_id])
-    image_annotator = Google::Cloud::Vision::ImageAnnotator.new
+    image_annotator = Google::Cloud::Vision::ImageAnnotator.new(credentials: JSON.parse(ENV.fetch('GOOGLE_API_CREDS'))
     image_path = ActiveStorage::Blob.service.send(:object_for, @image.key).public_url
     @response = image_annotator.text_detection(
       image: image_path,
@@ -74,4 +81,8 @@ end
 def correct_record
   @record = current_task.records.find_by(id: params[:id])
   redirect_to groups_url unless @record
+end
+
+def save_image(url)
+
 end
