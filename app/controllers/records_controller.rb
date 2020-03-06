@@ -63,7 +63,11 @@ class RecordsController < ApplicationController
   def text
 
     @image = @record.images.find(params[:record][:image_id])
+<<<<<<< HEAD
     image_annotator = Google::Cloud::Vision::ImageAnnotator.new(credentials: JSON.parse(ENV.fetch('GOOGLE_API_CREDS')))
+=======
+    image_annotator = Google::Cloud::Vision::ImageAnnotator.new(credentials: JSON.parse(ENV.fetch('GOOGLE_API_CREDS'))
+>>>>>>> 1bad58a70f6598e3d7c91fee6bf2682d76689170
     image_path = ActiveStorage::Blob.service.send(:object_for, @image.key).public_url
     @response = image_annotator.text_detection(
       image: image_path,
