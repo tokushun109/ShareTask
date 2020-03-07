@@ -7,13 +7,13 @@
   </div>
   <div class="col-md-6 ">
     <p>テキスト</p>
-    <% if @response.responses.first.text_annotations.any? %>
-      <div class="mb-4"><%= @response.responses.first.text_annotations.first.description %></div>
-    <% else%>
+    <% if @response.responses.first.text_annotations == [] || @response.nil? %>
       <div class="mb-4 text-center">
         テキスト抽出に失敗しました<br>
         (画面更新で抽出できる場合があります)
       </div>
+    <% else %>
+      <div class="mb-4"><%= @response.responses.first.text_annotations.first.description %></div>
     <% end %>
   </div>
 </div>
