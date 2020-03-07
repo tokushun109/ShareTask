@@ -7,7 +7,14 @@
   </div>
   <div class="col-md-6 ">
     <p>テキスト</p>
-    <div class="mb-4"><%= @response.responses.first.text_annotations.first.description %></div>
+    <% if @response.responses.first.text_annotations.any? %>
+      <div class="mb-4"><%= @response.responses.first.text_annotations.first.description %></div>
+    <% else%>
+      <div class="mb-4 text-center">
+        テキスト抽出に失敗しました<br>
+        (画面更新で抽出できる場合があります)
+      </div>
+    <% end %>
   </div>
 </div>
 <%= link_to '進捗一覧へ戻る>>', current_task %>
