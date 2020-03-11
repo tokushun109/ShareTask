@@ -81,7 +81,3 @@ def correct_record
   @record = current_task.records.find_by(id: params[:id])
   redirect_to groups_url unless @record
 end
-
-def save_image(url)
-
-end
