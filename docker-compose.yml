@@ -1,5 +1,19 @@
 version: '3'
 services:
+  app:
+    build:
+      context: .
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: root
+    volumes:
+      - .:/ShareTask
+    depends_on:
+      - db
+    command: bundle exec puma -C /ShareTask/config/puma.rb
+    stdin_open: true
+    tty: true
+
   db:
     image: mysql:5.7
     environment:
@@ -9,13 +23,12 @@ services:
       - "3306:3306"
 
   web:
-    build: .
-    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    build:
+      context: containers/nginx
     volumes:
-      - .:/app_name
+      - ./containers/nginx/ssl:/etc/nginx/ssl
+      - .:/ShareTask
     ports:
-      - "3000:3000"
-    links:
-      - db
-    stdin_open: true
-    tty: true
+      - 80:80
+    depends_on:
+      - app
