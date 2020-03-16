@@ -1,24 +1,23 @@
 <div class="text-center">
   <h1>ユーザー情報編集</h1>
 </div>
-
 <div class="row">
   <div class="col-lg-6 offset-lg-3">
-
     <%= form_with(model: @user, local: true) do |f| %>
     <%= render 'layouts/error_messages', model: f.object %>
-
       <div class="form-group">
         <%= f.label :password, 'パスワード' %>
         <%= f.password_field :password, class: 'form-control' %>
       </div>
-
       <div class="form-group">
         <%= f.label :password_confirmation, 'パスワード（確認）' %>
         <%= f.password_field :password_confirmation, class: 'form-control' %>
       </div>
-
-      <%= f.submit '登録', class: 'btn btn-primary btn-block' %>
+      <% if @user.email =="test@test.com" %>
+        <p><i class="fas fa-exclamation-triangle"></i> テストユーザーでログインしているため編集できません</p>
+      <% else %>
+        <%= f.submit '変更', class: 'btn btn-primary btn-block' %>
+      <% end %>
     <% end %>
   </div>
 </div>
