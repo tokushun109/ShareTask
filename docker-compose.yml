@@ -26,7 +26,6 @@ services:
     build:
       context: containers/nginx
     volumes:
-      - ./containers/nginx/ssl:/etc/nginx/ssl
       - .:/ShareTask
     ports:
       - 80:80
