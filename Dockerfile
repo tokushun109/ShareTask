@@ -19,3 +19,4 @@ ADD ./Gemfile.lock $APP_ROOT/Gemfile.lock
 # Gemfileのbundle install
 RUN bundle install
 ADD . $APP_ROOT
+RUN mkdir -p tmp/sockets
