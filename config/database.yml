@@ -15,8 +15,12 @@ test:
   database: share-task_test
 
 production:
-  charset: utf8
-  encoding: utf8
-  database: share-task_production
-  username: share-task
-  password: <%= ENV['SHARE-TASK_DATABASE_PASSWORD'] %>
+  <<: *default
+  database: <%= ENV['DB_DATABASE'] %>
+  adapter: mysql2
+  encoding: utf8mb4
+  charset: utf8mb4
+  collation: utf8mb4_general_ci
+  host: <%= ENV['DB_HOST'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
