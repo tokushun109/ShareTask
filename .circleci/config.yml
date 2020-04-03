@@ -19,7 +19,7 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/mysql:5.7
 
-    working_directory: ~/your_app_name
+    working_directory: ~/ShareTask
 
     steps:
       - checkout
