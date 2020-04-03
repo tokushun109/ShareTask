@@ -48,6 +48,7 @@ group :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'rails-controller-testing'
+  gem 'rspec_junit_formatter'
 end
 
 group :production do
