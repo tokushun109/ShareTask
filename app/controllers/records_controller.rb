@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # from httplib2 import Http
 # from oauth2client import client
 # from googleapiclient.discovery import build
@@ -9,7 +10,7 @@
 class RecordsController < ApplicationController
   before_action :require_user_logged_in
   before_action :correct_record, only: %i[edit update destroy text]
-  require "google/cloud/vision"
+  require 'google/cloud/vision'
 
   def new
     @record = Record.new
@@ -35,11 +36,9 @@ class RecordsController < ApplicationController
 
   def update
     if @record.update(record_params)
-      if params[:record][:image_ids]
-        params[:record][:image_ids].each do |image_id|
-          image = @record.images.find(image_id)
-          image.purge
-        end
+      params[:record][:image_ids]&.each do |image_id|
+        image = @record.images.find(image_id)
+        image.purge
       end
       flash[:success] = '進捗を変更しました'
       if @record.progress == 100

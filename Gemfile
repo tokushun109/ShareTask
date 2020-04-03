@@ -5,33 +5,33 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.3'
 
+gem 'aws-sdk-s3', require: false
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'chart-js-rails', '~> 0.1.4'
 gem 'coffee-rails', '~> 4.2'
+gem 'dotenv-rails'
+gem 'faker'
 gem 'font-awesome-rails'
+gem 'google-cloud-vision'
 gem 'jbuilder', '~> 2.5'
 gem 'kaminari'
+gem 'mini_magick'
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 gem 'puma', '>= 3.12.4'
+gem 'rack'
 gem 'rails', '~> 5.2.2'
 gem 'rails-i18n'
 gem 'ransack'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
-gem 'rack'
-gem 'faker'
-gem 'chart-js-rails', '~> 0.1.4'
-gem 'dotenv-rails'
-gem 'google-cloud-vision'
-gem 'aws-sdk-s3', require: false
-gem 'mini_magick'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'pry-byebug'
   gem 'rubocop'
   gem 'spring-commands-rspec'
-  gem 'pry-byebug'
 end
 
 group :developmemt do
@@ -46,8 +46,8 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'launchy'
-  gem 'rspec-rails'
   gem 'rails-controller-testing'
+  gem 'rspec-rails'
   gem 'rspec_junit_formatter'
 end
 

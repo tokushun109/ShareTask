@@ -1,11 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'groups_index', type: :system do
-
   before do
     @user = create(:user)
     20.times do
-      group = @user.leader_groups.create(name: "example")
+      group = @user.leader_groups.create(name: 'example')
       @user.relationships.create(group_id: group.id, status: 'accept')
     end
   end

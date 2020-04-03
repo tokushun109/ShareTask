@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class UsersController < ApplicationController
   before_action :require_user_logged_in, only: %i[edit update show search edit_pw group_users expulsion]
   before_action :set_user, only: %i[edit edit_pw update edit_pw]
@@ -43,7 +44,7 @@ class UsersController < ApplicationController
 
   def group_users
     relationships = current_group.relationships.where(status: 'accept')
-    @group_users = relationships.map { |relationship| User.find(relationship.user_id)}
+    @group_users = relationships.map { |relationship| User.find(relationship.user_id) }
     @group_users = Kaminari.paginate_array(@group_users).page(params[:page]).per(10)
   end
 

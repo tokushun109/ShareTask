@@ -36,8 +36,8 @@ class TasksController < ApplicationController
         @graph_y << record.progress
         @graph_x << record.created_at.strftime('%Y/%m/%d')
       elsif record.created_at.strftime('%Y/%m/%d') == before_created_at
-        @graph_y.pop()
-        @graph_x.pop()
+        @graph_y.pop
+        @graph_x.pop
         @graph_y << record.progress
         @graph_x << record.created_at.strftime('%Y/%m/%d')
       end

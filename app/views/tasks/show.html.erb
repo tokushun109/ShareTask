@@ -11,7 +11,7 @@
   <p><%= "期限 : #{set_time(current_task.time_limit)}まで" %></p>
   <%= link_to fa_icon("edit", text: "タスクを編集"), edit_task_path(@task) , class:'badge badge-info user-invite-btn' %>
   <%= link_to fa_icon("trash-alt", text: "タスクを削除"), @task, method: :delete, class:'badge badge-secondary', data: { confirm: "本当に削除しますか?" } %>
-  <% if @graph_y.any? %>
+  <%# <% if @graph_y.any? %> %>
     <div class="graph mt-4 mb-4">
       <canvas id="myLineChart"></canvas>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
@@ -21,7 +21,7 @@
         line_graph();
       </script>
     </div>
-  <% end %>
+  <%# <% end %> %>
    <h2>進捗一覧</h2>
     <table class="table table-striped table-bordered">
       <tr>

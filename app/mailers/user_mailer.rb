@@ -1,5 +1,4 @@
 class UserMailer < ApplicationMailer
-
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
@@ -7,7 +6,7 @@ class UserMailer < ApplicationMailer
   #
   def password_reset(user)
     @user = user
-    mail to: user.email, subject: "【ShareTask】パスワードの再設定用のリンクを送信いたします。"
+    mail to: user.email, subject: '【ShareTask】パスワードの再設定用のリンクを送信いたします。'
   end
 
   def invitation(user, group)
@@ -21,6 +20,4 @@ class UserMailer < ApplicationMailer
     @group = group
     mail to: group_user.email, subject: "【ShareTask】#{@accept_user.name}さんが#{@group.name}グループに参加しました。"
   end
-
-
 end

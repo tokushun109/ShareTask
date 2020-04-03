@@ -33,12 +33,19 @@ Metrics/LineLength:
 Metrics/AbcSize:
   Enabled: false
 
-#ブロック内の行数は50まで
 Metrics/BlockLength:
   Max: 40
+  Exclude:
+    - spec/**/*
+
+Metrics/MethodLength:
+  Max: 20
 
 Lint/SuppressedException:
   Enabled: false
 
 Lint/SuppressedException:
+  Enabled: false
+
+AccessorMethodName:
   Enabled: false

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'password_reset', type: :system do
-
   before do
     ActionMailer::Base.deliveries.clear
   end
@@ -12,7 +11,7 @@ RSpec.describe 'password_reset', type: :system do
     get new_password_reset_url
     expect(response.body).to include 'パスワードをお忘れですか？'
     # 無効なメールアドレスを入力
-    post password_resets_path, params: { password_reset: { email: "" } }
+    post password_resets_path, params: { password_reset: { email: '' } }
     expect(response.body).to have_selector 'div.alert'
     expect(response.body).to include 'パスワードをお忘れですか？'
     # 有効なメールアドレスを入力
@@ -29,7 +28,7 @@ RSpec.describe 'password_reset', type: :system do
 
     # パスワード再設定画面のリンク
     # emailが無効
-    get edit_password_reset_url(get_user.reset_token, email: "")
+    get edit_password_reset_url(get_user.reset_token, email: '')
     expect(response).to redirect_to root_path
     # reset_tokenが無効
     get edit_password_reset_url('wrong_token', email: user.email)
@@ -42,20 +41,20 @@ RSpec.describe 'password_reset', type: :system do
     # 異なるパスワードを入れる
     patch password_reset_path(get_user.reset_token),
           params: { email: user.email,
-                    user: { password:              "foobaz",
-                            password_confirmation: "barquux" } }
+                    user: { password: 'foobaz',
+                            password_confirmation: 'barquux' } }
     expect(response.body).to have_selector 'div.alert'
     # 空のパスワードを入れる
     patch password_reset_path(get_user.reset_token),
           params: { email: user.email,
-                    user: { password:              "",
-                            password_confirmation: "" } }
+                    user: { password: '',
+                            password_confirmation: '' } }
     expect(response.body).to have_selector 'div.alert'
     # 有効なパスワードを入れる
     patch password_reset_path(get_user.reset_token),
-      params: { email: user.email,
-                user: { password:              "foobaz",
-                        password_confirmation: "foobaz" } }
+          params: { email: user.email,
+                    user: { password: 'foobaz',
+                            password_confirmation: 'foobaz' } }
     expect(is_logged_in?).to be_truthy
     expect(response).to redirect_to groups_path
     follow_redirect!
@@ -65,13 +64,13 @@ RSpec.describe 'password_reset', type: :system do
   scenario 'tokenの期限' do
     get new_password_reset_url
     post password_resets_path,
-      params: { password_reset: { email: user.email } }
+         params: { password_reset: { email: user.email } }
     get_user = assigns(:user)
     get_user.update_attribute(:reset_sent_at, 3.hours.ago)
     patch password_reset_path(get_user.reset_token),
-      params: { email: get_user.email,
-                user: { password:              "foobar",
-                        password_confirmation: "foobar" } }
+          params: { email: get_user.email,
+                    user: { password: 'foobar',
+                            password_confirmation: 'foobar' } }
     expect(response).to redirect_to new_password_reset_url
     follow_redirect!
     expect(response.body).to have_selector 'div.alert'

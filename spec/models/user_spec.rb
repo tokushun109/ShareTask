@@ -71,8 +71,8 @@ RSpec.describe User, type: :model do
     end
     context '有効ではない値を入れた時' do
       it 'invalidになること' do
-        valid_addresses = %w["user@example.com" "USER@foo.COM" "A_US-ER@foo.bar.org"
-                             "first.last@foo.jp" "alice+bob@baz.cn"]
+        valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
+                             first.last@foo.jp alice+bob@baz.cn]
         valid_addresses.each do |valid_address|
           user.email = valid_address
           expect(user).to be_invalid
@@ -106,8 +106,7 @@ RSpec.describe User, type: :model do
 
   describe '#authenticated?' do
     it '値がnilのときfalseを返すこと' do
-      expect(user.authenticated?(:remember ,'')).to be_falsey
+      expect(user.authenticated?(:remember, '')).to be_falsey
     end
   end
-
 end

@@ -14,10 +14,10 @@ class RelationshipsController < ApplicationController
 
   def invite
     user = User.find_by(id: params[:user_id])
-    unless current_user == user
-      redirect_to groups_url
-    else
+    if current_user == user
       @group = Group.find_by(id: params[:group_id])
+    else
+      redirect_to groups_url
     end
   end
 

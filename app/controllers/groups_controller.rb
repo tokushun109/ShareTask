@@ -36,12 +36,11 @@ class GroupsController < ApplicationController
     @graph_y = []
     @graph_x = []
     current_group.tasks.each do |task|
-      unless task.records == []
-        if task.time_limit.ago(7) <= Time.zone.now && task.status == 'incomplete'
-          @graph_y << task.records.last.progress
-          @graph_x << task.name
-        end
-      end
+      next if task.records == []
+      next unless task.time_limit.ago(7) <= Time.zone.now && task.status == 'incomplete'
+
+      @graph_y << task.records.last.progress
+      @graph_x << task.name
     end
   end
 
