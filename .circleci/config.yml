@@ -4,7 +4,7 @@
 #
 version: 2.1
 jobs:
-  build:
+  test:
     docker:
       # specify the version you desire here
       - image: circleci/ruby:2.5.3-node-browsers
@@ -73,3 +73,12 @@ jobs:
       - run:
           name: run rubocop
           command: bundle exec rubocop
+
+workflows:
+  build-and-deploy:
+    jobs:
+      - test:
+          filters:
+            branches:
+              only:
+                - master
