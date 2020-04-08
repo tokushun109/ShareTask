@@ -81,7 +81,6 @@ workflows:
           region: AWS_REGION
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          create-repo: true
           dockerfile: ./Dockerfile
           repo: "${MY_APP_PREFIX_RAILS}"
           tag: "${CIRCLE_SHA1}"
@@ -94,6 +93,9 @@ workflows:
               only:
                 - master
           account-url: AWS_ECR_ACCOUNT_URL
+          region: AWS_REGION
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           dockerfile: 'containers/nginx/Dockerfile'
           path: 'containers/nginx/'
           repo: "${MY_APP_PREFIX_NGINX}"
