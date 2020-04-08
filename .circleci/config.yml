@@ -69,3 +69,33 @@ workflows:
             branches:
               only:
                 - master
+      - aws-ecr/build-and-push-image:
+          name: 'build-rails-app'
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master
+          account-url: AWS_ECR_ACCOUNT_URL
+          region: AWS_REGION
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          create-repo: true
+          dockerfile: ./Dockerfile
+          repo: "${MY_APP_PREFIX_RAILS}"
+          tag: "${CIRCLE_SHA1}"
+      - aws-ecr/build-and-push-image:
+          name: 'build-nginx'
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master
+          account-url: AWS_ECR_ACCOUNT_URL
+          dockerfile: 'containers/nginx/Dockerfile'
+          path: 'containers/nginx/'
+          repo: "${MY_APP_PREFIX_NGINX}"
+          region: AWS_REGION
+          tag: "${CIRCLE_SHA1}"
