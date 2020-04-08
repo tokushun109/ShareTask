@@ -81,7 +81,7 @@ workflows:
           region: AWS_REGION
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          repo: "${MY_APP_PREFIX_RAILS}"
+          repo: 'rails-api'
           tag: "${CIRCLE_SHA1}"
       - aws-ecr/build-and-push-image:
           name: 'build-nginx'
