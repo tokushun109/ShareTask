@@ -81,6 +81,7 @@ workflows:
           region: AWS_REGION
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          create-repo: true
           repo: 'rails-api'
           tag: "${CIRCLE_SHA1}"
       - aws-ecr/build-and-push-image:
@@ -95,6 +96,7 @@ workflows:
           region: AWS_REGION
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          dockerfile: 'containers/nginx/Dockerfile'
+          path: 'containers/nginx/'
+          create-repo: true
           repo: 'nginx'
           tag: "${CIRCLE_SHA1}"
