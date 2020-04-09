@@ -100,3 +100,15 @@ workflows:
           create-repo: true
           repo: 'nginx'
           tag: "${CIRCLE_SHA1}"
+      - aws-ecs/deploy-service-update:
+          requires:
+            - build-rails-app
+            - build-nginx
+          filters:
+            branches:
+              only:
+                - master
+          family: 'rails-nginx'
+          cluster-name: '${ECS_ARN}'
+          service-name: 'sharetask-ecs-service'
+          container-image-name-updates: 'container=rails-api,tag=${CIRCLE_SHA1},container=nginx,tag=${CIRCLE_SHA1}'
