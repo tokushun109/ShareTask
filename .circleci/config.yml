@@ -112,3 +112,4 @@ workflows:
           cluster-name: '${ECS_ARN}'
           service-name: 'sharetask-ecs-service'
           container-image-name-updates: 'container=rails-api,tag=${CIRCLE_SHA1},container=nginx,tag=${CIRCLE_SHA1}'
+          force-new-deployment: true
