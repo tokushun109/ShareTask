@@ -9,14 +9,12 @@ class TasksController < ApplicationController
   end
 
   def create
-    # post_user_idにcurrent_userを、post_group_idにcurrent_groupをnameに好きな値を入れたい
     @task = current_user.tasks.build(task_params)
     @task.status = 'incomplete'
     @task.post_group_id = current_group.id
 
     if @task.save
       flash[:success] = '新しいタスクを作成しました'
-      # 後ほどgroups_urlに飛ばせるようにする
       redirect_to current_group
 
     else
@@ -31,15 +29,13 @@ class TasksController < ApplicationController
     before_created_at = nil
     @graph_y = []
     @graph_x = []
-    current_task.records.each do |record|
+    current_task.records.last(10).each do |record|
       if record.created_at.strftime('%Y/%m/%d') != before_created_at
         @graph_y << record.progress
         @graph_x << record.created_at.strftime('%Y/%m/%d')
-      elsif record.created_at.strftime('%Y/%m/%d') == before_created_at
-        @graph_y.pop
-        @graph_x.pop
-        @graph_y << record.progress
-        @graph_x << record.created_at.strftime('%Y/%m/%d')
+      else
+        @graph_y.map! { |x| x == @graph_y.last ? record.progress : x }
+        @graph_x.map! { |x| x == @graph_x.last ? record.created_at.strftime('%Y/%m/%d') : x }
       end
       before_created_at = record.created_at.strftime('%Y/%m/%d')
     end
