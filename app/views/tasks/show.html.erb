@@ -25,10 +25,10 @@
    <h2>進捗一覧</h2>
     <table class="table table-striped table-bordered">
       <tr>
-        <th class="text-center">記入日</th>
-        <th class="text-center">進捗度(%)</th>
+        <th class="text-center" width="25%">記入日</th>
+        <th class="text-center" width="20%">進捗度(%)</th>
         <th class="text-center">補足/画像</th>
-        <th class="text-center">操作</th>
+        <th class="text-center" width="20%">操作</th>
       </tr>
       <% @records.each do |record| %>
         <tr>
@@ -37,7 +37,7 @@
           <td class="text-center">
             <ul>
               <li>
-                <%= record.supplement %>
+                <%= simple_format(record.supplement) %>
               </li>
               <li>
                 <% if record.images.attached? %>

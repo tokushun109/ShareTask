@@ -31,7 +31,6 @@
           <th class="text-center">期限</th>
           <th class="text-center">担当</th>
           <th class="text-center">進捗度(％)</th>
-          <th class="text-center omitted">補足</th>
       </tr>
       <% @tasks.each do |task|%>
       <tr>
@@ -48,11 +47,6 @@
           <td class="text-center">
               <% unless task.records.last == nil %>
               <%= task.records.last.progress %>
-              <% end %>
-          </td>
-          <td class="text-center omitted">
-              <% unless task.records.last == nil %>
-              <%= task.records.last.supplement %>
               <% end %>
           </td>
       </tr>
