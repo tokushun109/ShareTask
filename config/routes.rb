@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   resources :records, only: %i[new create edit update destroy] do
     member do
       put :text
+      delete :image_destroy
     end
   end
   resources :password_resets, only: %i[new create edit update]

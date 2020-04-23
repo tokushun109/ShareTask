@@ -9,7 +9,7 @@
 
 class RecordsController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_record, only: %i[edit update destroy text]
+  before_action :correct_record, only: %i[edit update destroy text image_destroy]
   require 'google/cloud/vision'
 
   def new
@@ -57,6 +57,11 @@ class RecordsController < ApplicationController
     @record.destroy
     flash[:success] = '進捗を削除しました'
     redirect_to current_task
+  end
+
+  def image_destroy
+    @image = @record.images.find(params[:image_id])
+    @image.purge
   end
 
   def text

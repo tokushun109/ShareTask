@@ -1,3 +1,22 @@
 #record_images{
   width: 100%;
 }
+
+#record_progress{
+  width: 30%
+}
+
+#record_supplement{
+  height: 150px;
+}
+
+.registration-image{
+  display: flex;
+  border-bottom: 1px solid gray;
+  justify-content: space-between;
+  li{
+    a{
+      color: #DC3545;
+    }
+  }
+}
