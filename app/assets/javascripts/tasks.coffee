@@ -4,7 +4,7 @@
 window.bar_graph = ->
     ctx = document.getElementById("myLineChart")
     myLineChart = new Chart(ctx, {
-      type: "bar",
+      type: 'horizontalBar',
       data:{
         labels: graph_x,
         datasets:[{
@@ -15,15 +15,22 @@ window.bar_graph = ->
       },
       options:{
         scales: {
-          yAxes: [{
+          xAxes: [{
             ticks: {
               suggestedMax: 100,
               suggestedMin: 0,
               stepSize: 25,
               callback: (value, index, values) ->
                 return  value +  '%'
-              }
+            }
           }]
+        },
+        legend: {
+          display:false
+        },
+        title: {
+          display: true,
+          text: '進捗度(期限が1週間以内)',
         }
       }
     })

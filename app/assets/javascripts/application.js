@@ -14,3 +14,27 @@
 //= require rails-ujs
 //= require activestorage
 //= require_tree .
+//= require jquery
+
+$(function(){
+  
+   const $fileField = $('#file');
+
+  $($fileField).on('change', $fileField, function(e) {
+    let file = e.target.files[0];
+    let reader = new FileReader();
+    const $preview = $("#img_field");
+
+    reader.onload = function(e){
+        $preview.empty();
+        $preview.append($('<img>').attr({
+          src: e.target.result,
+          width: "100%",
+          class: "preview",
+          title: file.name
+        }));
+      };
+    reader.readAsDataURL(file);
+  });
+
+});

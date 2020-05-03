@@ -14,7 +14,12 @@
         <%= f.text_area :supplement, class: 'form-control' %>
       </div>
       <div class="form-group">
-        <%= f.file_field :images, multiple: true %>
+        <%= f.file_field :images, multiple: true, id: "file", style: "display: none;"%>
+        ■ 画像
+        <div id="img_field" onClick="$('#file').click()" >
+          <i class="fas fa-image"></i>
+          <i class="fas fa-file-upload add"></i>
+        </div>
       </div>
       <%= f.submit '登録', class: 'btn btn-primary btn-block' %>
     <% end %>

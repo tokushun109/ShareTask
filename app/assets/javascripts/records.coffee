@@ -7,14 +7,13 @@ window.line_graph = ->
       type: 'line',
       data: {
         labels: graph_x,
-        datasets: [
-          {
+        datasets: [{
             label: '進捗度',
             data: graph_y,
             borderColor: "rgba(255,0,0,1)",
-            backgroundColor: "rgba(0,0,0,0)"
-          },
-        ],
+            backgroundColor: "rgba(255,0,0,0.3)",
+            lineTension: 0
+        }]
       },
       options: {
         scales: {
@@ -34,5 +33,12 @@ window.line_graph = ->
             }
           }],
         },
+        legend: {
+          display:false
+        },
+        title: {
+          display: true,
+          text: '進捗度',
+        }
       }
     })
