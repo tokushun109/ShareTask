@@ -15,6 +15,7 @@ gem 'faker'
 gem 'font-awesome-rails'
 gem 'google-cloud-vision'
 gem 'jbuilder', '~> 2.5'
+gem 'jquery-rails'
 gem 'kaminari'
 gem 'mini_magick'
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
@@ -26,7 +27,6 @@ gem 'ransack'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
-gem 'jquery-rails'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
