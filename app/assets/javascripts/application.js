@@ -17,7 +17,7 @@
 //= require jquery
 
 $(function(){
-  
+
    const $fileField = $('#file');
 
   $($fileField).on('change', $fileField, function(e) {
@@ -36,5 +36,4 @@ $(function(){
       };
     reader.readAsDataURL(file);
   });
-
 });

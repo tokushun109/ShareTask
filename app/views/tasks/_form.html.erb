@@ -1,0 +1,26 @@
+<%= form_with(model: @task, local: true) do |f| %>
+<%= render 'layouts/error_messages', model: f.object %>
+  <div class="form-group">
+    <%= f.label :name, 'タスク名' %>
+    <%= f.text_field :name, class: 'form-control'  %>
+  </div>
+  <div class="form-group">
+    <%= f.label :in_charge, '担当者' %>
+    <%= f.text_field :in_charge, class: 'form-control' %>
+  </div>
+  <div class="form-group datetime_f">
+    <%= f.label :time_limit, '期限' %><br>
+    <%= raw sprintf(
+        f.datetime_select(
+          :time_limit,
+          discard_minute: true,
+          minute_step: 15,
+          use_month_numbers: true,
+          default: Time.now + 9.hour,
+          date_separator: '%s',
+          datetime_separator: '%s',
+          time_separator: '%s'),
+          '年', '月', '日') + '時' %>
+  </div>
+  <%= f.submit '登録', class: 'btn btn-primary btn-block'  %>
+<% end %>

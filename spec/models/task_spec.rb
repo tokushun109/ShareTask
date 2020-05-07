@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Task, type: :model do
-  let(:task) { build(:task) }
+  subject(:task) { build(:task) }
 
   context 'テストで使用するtaskが有効な値の時' do
     it 'validになること' do

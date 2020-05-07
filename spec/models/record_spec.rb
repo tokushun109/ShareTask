@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Record, type: :model do
-  let(:record) { build(:record) }
+  subject(:record) { build(:record) }
 
   context 'テストで使用するrecordが有効な値の時' do
     it 'validになること' do

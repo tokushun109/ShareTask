@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { build(:user) }
+  subject(:user) { build(:user) }
   let(:group) { build(:group) }
 
   context 'テストで使用するuserが有効な値の時' do

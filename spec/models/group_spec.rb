@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Group, type: :model do
-  let(:group) { build(:group) }
+  subject(:group) { build(:group) }
 
   context 'テストで使用するgroupが有効な値の時' do
     it 'validになること' do
