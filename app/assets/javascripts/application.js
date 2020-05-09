@@ -19,33 +19,21 @@
 $(function(){
 
    const $fileField = $('#file');
-   const img_field_form = $("#img_field").html();
 
   $($fileField).on('change', $fileField, function(e) {
     let file = e.target.files[0];
-    let files = e.target.files;
+    let reader = new FileReader();
     const $preview = $("#img_field");
 
-    if (files.length === 0) {
-      $preview.empty();
-      $preview.html(img_field_form);
-    }else{
-      $.each(files, function(index, file) {
-        let reader = new FileReader();
-        reader.onload = function(e){
-          if (index === 0) {
-            $preview.empty();
-          }
-          $preview.append($('<img>').attr({
-            src: e.target.result,
-            width: "100%",
-            class: "preview",
-            title: file.name,
-            style: "margin-top: 2rem;"
-          }));
-        };
-        reader.readAsDataURL(file);
-      });
-    }
+    reader.onload = function(e){
+        $preview.empty();
+        $preview.append($('<img>').attr({
+          src: e.target.result,
+          width: "100%",
+          class: "preview",
+          title: file.name
+        }));
+      };
+    reader.readAsDataURL(file);
   });
 });
