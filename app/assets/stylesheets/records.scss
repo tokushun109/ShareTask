@@ -1,3 +1,12 @@
+.flex{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.image-container{
+  width: 25%;
+}
+
 #record_images{
   width: 100%;
 }
@@ -73,4 +82,7 @@
 
 .preview{
   width: 100%;
+}
+.close{
+  position: absolute;
 }

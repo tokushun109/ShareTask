@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2020_02_07_111025) do
 
   create_table "records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "progress"
-    t.string "supplement"
+    t.text "supplement"
     t.bigint "task_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

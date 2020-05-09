@@ -10,9 +10,9 @@ RSpec.describe Record, type: :model do
   end
 
   describe 'supplementの有効性' do
-    context '256文字以上の場合' do
+    context '501文字以上の場合' do
       it 'invalidになること' do
-        record.supplement = 'a' * 256
+        record.supplement = 'a' * 501
         expect(record).to be_invalid
       end
     end
