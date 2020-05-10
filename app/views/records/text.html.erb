@@ -17,4 +17,19 @@
     <% end %>
   </div>
 </div>
-<%= link_to '進捗一覧へ戻る>>', current_task %>
+<div class="text-center">
+  <div class="triangle"></div>
+</div>
+<div class="row transcription">
+  <div class="col-sm-8 offset-sm-2">
+    <p>テキストをコピーしてコメントに反映してみましょう!</p>
+    <%= form_with(model: @record, local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      <div class="form-group">
+        <%= f.text_area :supplement, class: 'form-control' %>
+      </div>
+      <%= f.submit '登録', class: 'btn btn-primary btn-block' %>
+    <% end %>
+    <%= link_to '進捗一覧へ戻る>>', current_task %>
+  </div>
+</div>

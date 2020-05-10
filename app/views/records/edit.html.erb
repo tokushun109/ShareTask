@@ -4,43 +4,7 @@
 
 <div class="row">
   <div class="col-sm-8 offset-sm-2">
-    <%= form_with(model: @record, local: true) do |f| %>
-    <%= render 'layouts/error_messages', model: f.object %>
-      <div class="form-group">
-        <%= f.label :progress, '進捗度(%)(0~100まで入力可能)' %>
-        <%= f.text_field :progress, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :supplement, 'コメント(終了した作業や今後の予定を記入しましょう)' %>
-        <%= f.text_area :supplement, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.file_field :images, multiple: true, style: "display:none;", id: "file"%>
-        ■ 画像
-        <div id="img_field" onClick="$('#file').click()" >
-          <i class="fas fa-image"></i>
-          <i class="fas fa-file-upload add"></i>
-        </div>
-      </div>
-        <% if @record.images.attached? %>
-          <p id="registration-image-title">■ 登録した画像</p>
-        <% end %>
-        <% @record.images.each do |image| %>
-          <div id="image-<%= image.id %>">
-            <ul id="registration-image">
-              <li><%= image.filename %></li>
-              <li>
-                <%= link_to image_destroy_record_path(@record, image_id: image.id), method: :delete, data: {confirm: '削除しますか？'}, remote: true do %>
-                  <i class="fas fa-window-close"></i>
-                <% end %>
-              </li>
-            </ul>
-          </div>
-        <% end %>
-      <div class="form-group">
-      </div>
-      <%= f.submit '変更', class: 'btn btn-primary btn-block' %>
-    <% end %>
+    <%= render "records/form.html.erb" %>
     <%= link_to '進捗一覧へ戻る≫', current_task %>
   </div>
 </div>
