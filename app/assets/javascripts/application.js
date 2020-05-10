@@ -11,10 +11,10 @@
 // about supported directives.
 //
 //= require Chart.min
+//= require jquery
 //= require rails-ujs
 //= require activestorage
 //= require_tree .
-//= require jquery
 
 $(function(){
 

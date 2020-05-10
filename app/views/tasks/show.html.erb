@@ -59,7 +59,7 @@
           </table>
         <% end %>
         <% if record.images.attached? %>
-          <table class="table table-bordered">
+          <table class="table table-bordered image-table">
             <thead class="thead-light text-center">
               <tr>
                 <th>画像</th>
@@ -70,7 +70,7 @@
                 <td class="flex">
                   <% record.images.each do |image| %>
                     <div class="image-container text-center">
-                      <div id="image-<%= image.id %>">
+                      <div id="image-<%= image.id %>" class="image-id">
                         <div class="close">
                           <%= link_to image_destroy_record_path(image.record, image_id: image.id), method: :delete, data: {confirm: '削除しますか？'}, remote: true do %>
                             <i class="fas fa-window-close text-danger"></i>

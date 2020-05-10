@@ -1,1 +1,6 @@
-document.getElementById('image-<%= @image.id %>').outerHTML  = '';
+$(function() {
+  $('#image-<%= @image.id %>').html('');
+  if($('.image-id').has('img').length === 0){
+    $('.image-table').hide();
+  }
+});
