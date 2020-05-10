@@ -13,10 +13,7 @@
                     <td class="text-center"><%= group_user.user_name %></td>
                     <td class="text-center"><%= group_user.name %></td>
                     <td class="text-center">
-                    <%= form_with(url: expulsion_users_path, local: true, method: :delete) do |f| %>
-                        <%= hidden_field_tag :id, group_user.id %>
-                        <%= f.submit "このユーザーを退去" ,data: { confirm: "本当に退去させますか？" }, class:'btn btn-secondary btn-block btn-adjust' %>
-                    <% end %>
+                    <%= link_to "退去させる", expulsion_users_path(id: group_user.id), method: :delete, data: { confirm: "本当に退去させますか？" }, class:'btn btn-secondary btn-block btn-adjust' %>
                     </td>
                 </tr>
                 <% end %>

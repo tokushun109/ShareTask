@@ -1,15 +1,8 @@
-
-<div class="col-sm-8 offset-sm-2">
-     <h1><%= "#{@group.name}グループから招待されています" %></h1>
-<h2>参加しますか？</h2>
-
-<%= form_with(url: accept_relationships_path, local: true, method: :put) do |f| %>
-     <%= hidden_field_tag :group_id, @group.id %>
-<%= f.submit "参加する", class:'btn btn-info float-l mt-5 mr-4', data: { confirm: "このグループに参加しますか?" } %>
-<% end %>
-
-<%= form_with(url: deny_relationships_path, local: true, method: :delete) do |f| %>
-     <%= hidden_field_tag :group_id, @group.id %>
-<%= f.submit "辞退する", class:'btn btn-secondary mt-5', data: { confirm: "本当に辞退しますか?" } %>
-<% end %>
+<div class="row">
+  <div class="col-sm-10 offset-sm-1">
+    <h1><%= "#{@group.name}グループから招待されています" %></h1>
+    <h2>参加しますか？</h2>
+    <%= link_to "参加する", accept_relationships_path(group_id: @group.id), method: :put, data: { confirm: "このグループに参加しますか?" }, class:'btn btn-info float-l mt-5 mr-4' %>
+    <%= link_to "辞退する", deny_relationships_path(group_id: @group.id), method: :delete, data: { confirm: "本当に辞退しますか?" }, class:'btn btn-secondary mt-5' %>
+  </div>
 </div>

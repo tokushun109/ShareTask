@@ -31,10 +31,7 @@
           <% elsif current_group.invite?(user) && current_group.confirm_status(user).status == 'accept'%>
             <div> グループに参加しています</div>
           <% else %>
-            <%= form_with(model: current_group.relationships.build, local: true) do |f| %>
-              <%= hidden_field_tag :user_id, user.id %>
-              <%= f.submit 'グループに招待する' ,data: { confirm: "このユーザーを招待しますか？" }, class: 'btn btn-info btn-block btn-adjust'%>
-            <% end %>
+            <%= link_to "グループに招待する", relationships_path(current_group, user_id: user.id), method: :post, data: { confirm: "このユーザーを招待しますか？" }, class: 'btn btn-info btn-block btn-adjust' %>
           <% end %>
           </td>
         </tr>
