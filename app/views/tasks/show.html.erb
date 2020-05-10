@@ -23,51 +23,78 @@
     </div>
   <% end %>
    <h2 class="list-title"><%= current_group.name %>のグループ > <%= current_task.name %>のタスク > 進捗一覧</h2>
-    <table class="table table-striped table-bordered">
-      <tr>
-        <th class="text-center" width="25%">記入日</th>
-        <th class="text-center" width="20%">進捗度(%)</th>
-        <th class="text-center">コメント</th>
-        <th class="text-center" width="20%">操作</th>
-      </tr>
-      <% @records.each do |record| %>
-        <tr>
-          <td class="text-center"><%= set_time(record.created_at) %></td>
-          <td class="text-center"><%= record.progress %></td>
-          <td>
-            <ul>
-              <li>
-                <%= simple_format(record.supplement) %>
-              </li>
-              <li>
-                <% if record.images.attached? %>
+   <div class="mb-5">
+     <% @records.each do |record| %>
+       <table class="table table-bordered text-center mb-0 mt-5">
+         <thead class="thead-light">
+           <tr>
+             <th>記入日</th>
+             <th>進捗度(%)</th>
+             <th>操作</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <td><%= set_time(record.created_at) %></td>
+             <td><%= record.progress %></td>
+             <td>
+               <%= link_to fa_icon("edit", text: "編集"), edit_record_path(record) , class:'badge badge-info py-2' %>
+               <%= link_to fa_icon("trash-alt", text: "削除"), record_path(record, id: record.id), method: :delete, data: { confirm: "本当に削除しますか?" } , class:'badge badge-secondary py-2' %>
+             </td>
+           </tr>
+         </tbody>
+        </table>
+        <% if record.supplement != "" %>
+          <table class="table table-bordered mb-0">
+            <thead class="thead-light text-center">
+              <tr>
+                <th>コメント</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= simple_format(record.supplement) %></td>
+              </tr>
+            </tbody>
+          </table>
+        <% end %>
+        <% if record.images.attached? %>
+          <table class="table table-bordered">
+            <thead class="thead-light text-center">
+              <tr>
+                <th>画像</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="flex">
                   <% record.images.each do |image| %>
-                    <%= link_to image, 'data-lightbox': image do  %>
-                      <%= image_tag image %>
-                    <% end %>
-                    <%= form_with(model: record, local: true, url: text_record_path(record), method: :put) do |f| %>
-                      <%= f.hidden_field :image_id, value: image.id %>
-                      <%= button_tag :type => "submit", :class =>"badge badge-success pt-2 pb-2 mb-2" do %>
-                        <i class="fas fa-file-alt"></i> 文字抽出
-                      <% end %>
-                    <% end %>
+                    <div class="image-container text-center">
+                      <div id="image-<%= image.id %>">
+                        <div class="close">
+                          <%= link_to image_destroy_record_path(image.record, image_id: image.id), method: :delete, data: {confirm: '削除しますか？'}, remote: true do %>
+                            <i class="fas fa-window-close text-danger"></i>
+                          <% end %>
+                        </div>
+                        <%= link_to image, 'data-lightbox': image do  %>
+                          <%= image_tag image %>
+                        <% end %>
+                        <%= form_with(model: record, local: true, url: text_record_path(record), method: :put) do |f| %>
+                          <%= f.hidden_field :image_id, value: image.id %>
+                          <%= button_tag :type => "submit", :class =>"badge badge-success pt-2 pb-2 mb-2" do %>
+                            <i class="fas fa-file-alt"></i> 文字抽出
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </div>
                   <% end %>
-                <% end %>
-              </li>
-            </ul>
-          </td>
-          <td class="text-center btn-list">
-            <%= link_to fa_icon("edit", text: "編集"), edit_record_path(record) , class:'badge badge-info mb-2 pt-2 pb-2' %>
-            <%= form_with(model: record, local: true, method: :delete, data: { confirm: "本当に削除しますか?" }) do |f| %>
-              <%= hidden_field_tag :id, record.id %>
-              <%= button_tag :type => "submit", :class =>"badge badge-secondary pt-2 pb-2" do %>
-                <i class="fa fa-trash-alt"></i> 削除
-              <% end %>
-            <% end %>
-          </td>
-        </tr>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        <% end %>
       <% end %>
-    </table>
+   </div>
   <%= paginate(@records) %>
   <%= link_to fa_icon("plus", text: "進捗追加"), new_record_path, class: 'btn btn-primary btn-block' %>
   <%= link_to 'タスク一覧へ戻る≫', current_group %>
