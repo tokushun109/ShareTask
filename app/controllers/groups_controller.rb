@@ -37,7 +37,7 @@ class GroupsController < ApplicationController
     @graph_x = []
     current_group.tasks.each do |task|
       next if task.records == []
-      next unless task.time_limit.ago(7) <= Time.zone.now && task.status == 'incomplete'
+      next if Time.zone.now <= task.time_limit.ago(7.days) && task.status == 'incomplete'
 
       @graph_y << task.records.last.progress
       @graph_x << task.name
