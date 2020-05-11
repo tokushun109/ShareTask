@@ -1,18 +1,33 @@
 <h1 class="how_to_use_title">ShareTaskの使い方</h1>
-
 <div class="top_container">
-  <h2 class="top_img_title">グループ追加画面</h2>
-  <%= image_tag '/images/top_img_1.png', class: 'top_img' %>
+  <h2 class="top_img_title">グループ管理画面</h2>
+  <div class="img_container">
+    <%= image_tag 'howtouse1.png', class: 'top_img' %>
+    <div class="comment">
+      ①タスクを共有するグループを作成しましょう
+    </div>
+  </div>
 </div>
 
 <div class="top_container">
-  <h2 class="top_img_title">タスク追加画面</h2>
-  <%= image_tag '/images/top_img_2.png', class: 'top_img' %>
+  <h2 class="top_img_title">タスク管理画面</h2>
+  <div class="img_container">
+    <%= image_tag 'howtouse2.png', class: 'top_img' %>
+    <div class="comment">
+      ②グループに他のユーザーを招待して
+      <br>共有したいタスクを登録しましょう
+    </div>
+  </div>
 </div>
 
 <div class="top_container">
-  <h2 class="top_img_title">進捗追加画面</h2>
-  <%= image_tag '/images/top_img_3.png', class: 'top_img' %>
+  <h2 class="top_img_title">進捗管理画面</h2>
+  <div class="img_container">
+    <%= image_tag 'howtouse3.png', class: 'top_img' %>
+    <div class="comment">
+      ③タスクの進捗を追加しましょう
+    </div>
+  </div>
 </div>
 
 <% if logged_in? %>

@@ -26,6 +26,25 @@
   font-size:200%;
 }
 
+
+.img_container{
+  position: relative;
+}
+.comment{
+  position: absolute;
+  display: inline-block;
+  padding: 7px 10px;
+  width: 100%;
+  color: #555;
+  font-size: 3vw;
+  background: #e0edff;
+  opacity: 0.8;
+  border-radius: 5px;
+  bottom: 30px;
+  right: 0;
+  vertical-align: middle;
+}
+
 @media(max-width: 1000px){
   .top_img_title{
   font-size:100%;
