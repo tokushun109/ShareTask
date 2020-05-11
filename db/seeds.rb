@@ -43,7 +43,6 @@ User.create!(name: '山田',
              password: 'yamada',
              password_confirmation: 'yamada')
 
-
 user = User.first
 11.times do
   content = Faker::Team.creature
@@ -56,10 +55,10 @@ time_limit = Time.zone.now
 11.times do
   name = Faker::Job.seniority
   user.tasks.create!(name: name,
-                    in_charge: 'Example User',
-                    time_limit: time_limit,
-                    status: 'incomplete',
-                    post_group_id: group.id)
+                     in_charge: 'Example User',
+                     time_limit: time_limit,
+                     status: 'incomplete',
+                     post_group_id: group.id)
 end
 
 suzuki = User.find_by(name: '鈴木')
@@ -68,52 +67,52 @@ suzuki_group = suzuki.leader_groups.create!(name: group_name)
 suzuki.relationships.create!(group_id: suzuki_group.id, status: 'accept')
 
 suzuki.tasks.create!(name: '試作品作成',
-                    in_charge: '田中',
-                    time_limit: Time.zone.now.since(4.days),
-                    status: 'incomplete',
-                    post_group_id: suzuki_group.id)
+                     in_charge: '田中',
+                     time_limit: Time.zone.now.since(4.days),
+                     status: 'incomplete',
+                     post_group_id: suzuki_group.id)
 
 suzuki.tasks.create!(name: 'DR資料作成',
-                    in_charge: '鈴木',
-                    time_limit: Time.zone.now.since(5.days),
-                    status: 'incomplete',
-                    post_group_id: suzuki_group.id)
+                     in_charge: '鈴木',
+                     time_limit: Time.zone.now.since(5.days),
+                     status: 'incomplete',
+                     post_group_id: suzuki_group.id)
 
 suzuki.tasks.create!(name: '評価検討',
-                    in_charge: '山田',
-                    time_limit: Time.zone.now.since(6.days),
-                    status: 'incomplete',
-                    post_group_id: suzuki_group.id)
+                     in_charge: '山田',
+                     time_limit: Time.zone.now.since(6.days),
+                     status: 'incomplete',
+                     post_group_id: suzuki_group.id)
 
 task1 = Task.first
 n = 5
 19.times do
   task1.records.create!(progress: n,
-                       supplement: 'Example',
-                       created_at: n.days.since)
+                        supplement: 'Example',
+                        created_at: n.days.since)
   n += 5
 end
 
 task2 = Task.second
 task2.records.create!(progress: 50,
-                     supplement: 'Example',
-                     created_at: 5.days.since)
+                      supplement: 'Example',
+                      created_at: 5.days.since)
 
 tanaka_task = Task.find_by(name: '試作品作成')
 tanaka_task.records.create!(progress: 70,
-                    supplement: '設計図作成終了',
-                    created_at: Time.zone.now.since(2.days))
+                            supplement: '設計図作成終了',
+                            created_at: Time.zone.now.since(2.days))
 
 tanaka_task.records.create!(progress: 90,
-                    supplement: '試作品作成を依頼',
-                    created_at: Time.zone.now.since(4.days))
+                            supplement: '試作品作成を依頼',
+                            created_at: Time.zone.now.since(4.days))
 
 suzuki_task = Task.find_by(name: 'DR資料作成')
 suzuki_task.records.create!(progress: 50,
-                    supplement: '報告資料作成中',
-                    created_at: Time.zone.now.since(3.days))
+                            supplement: '報告資料作成中',
+                            created_at: Time.zone.now.since(3.days))
 
 yamada_task = Task.find_by(name: '評価検討')
 yamada_task.records.create!(progress: 20,
-                    supplement: '検討準備中',
-                    created_at: Time.zone.now.since(3.days))
+                            supplement: '検討準備中',
+                            created_at: Time.zone.now.since(3.days))
