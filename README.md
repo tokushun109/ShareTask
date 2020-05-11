@@ -40,6 +40,7 @@ https://sharetask.work/
   - masterへのマージ時にECR・ECSに自動デプロイ
 
 ## アーキテクチャ図
+<img width="921" alt="sharetask-architecture" src="https://user-images.githubusercontent.com/54569800/81570439-8d8a6680-93db-11ea-94e7-30ed6057abf1.png">
 
 ## 機能一覧
 * ユーザー登録、ログイン機能全般、パスワードを忘れた際のメール配信(SendGrid)
@@ -55,3 +56,6 @@ https://sharetask.work/
 * 投稿画像を非同期に削除(ajax)
 * 画像からテキスト抽出(Google Cloud Vision)
 * ページネーション(kaminari)
+
+## モックアップ
+https://cacoo.com/diagrams/1DSbP7xkw3QuuuWn/E51DE
