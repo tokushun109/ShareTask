@@ -44,22 +44,27 @@ User.create!(name: '山田',
              password_confirmation: 'yamada')
 
 user = User.first
-11.times do
-  content = Faker::Team.creature
-  group = user.leader_groups.create!(name: content)
-  user.relationships.create!(group_id: group.id, status: 'accept')
-end
+content = 'Example Group'
+group = user.leader_groups.create!(name: content)
+user.relationships.create!(group_id: group.id, status: 'accept')
 
 group = Group.first
 time_limit = Time.zone.now
-11.times do
-  name = Faker::Job.seniority
-  user.tasks.create!(name: name,
-                     in_charge: 'Example User',
-                     time_limit: time_limit,
-                     status: 'incomplete',
-                     post_group_id: group.id)
-end
+name = 'Example Task1'
+user.tasks.create!(name: name,
+                   in_charge: 'Example User',
+                   time_limit: time_limit,
+                   status: 'incomplete',
+                   post_group_id: group.id)
+
+group = Group.first
+time_limit = Time.zone.now
+name = 'Example Task2'
+user.tasks.create!(name: name,
+                  in_charge: 'Example User',
+                  time_limit: time_limit,
+                  status: 'incomplete',
+                  post_group_id: group.id)
 
 suzuki = User.find_by(name: '鈴木')
 group_name = '設計開発チーム'
@@ -89,14 +94,18 @@ n = 5
 19.times do
   task1.records.create!(progress: n,
                         supplement: 'Example',
-                        created_at: n.days.since)
+                        created_at: Time.zone.now.ago(4.months).since(n.days))
   n += 5
 end
 
 task2 = Task.second
-task2.records.create!(progress: 50,
-                      supplement: 'Example',
-                      created_at: 5.days.since)
+n = 5
+9.times do
+  task2.records.create!(progress: n,
+                        supplement: 'Example',
+                        created_at: Time.zone.now.ago(3.months).since(n.days))
+  n += 5
+end
 
 tanaka_task = Task.find_by(name: '試作品作成')
 tanaka_task.records.create!(progress: 70,
