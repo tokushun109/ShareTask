@@ -14,7 +14,6 @@ https://sharetask.work/
 - Nginx
 - Rspec
 - Rubocop
-- CircleCI
 
 #### フロントエンド
 - SASS
