@@ -10,7 +10,6 @@ https://sharetask.work/
 #### バックエンド
 - Ruby 2.5.3
 - Rails 5.2.2
-- Docker
 - Nginx
 - Rspec
 - Rubocop
@@ -29,8 +28,8 @@ https://sharetask.work/
   - ECS
   - ECR
   - S3
-  - ElasticCache Redis
   - ALB
+  - ACM
   - Route53
 * Docker(開発環境及び本番環境)
   - Nginx

@@ -61,10 +61,10 @@ group = Group.first
 time_limit = Time.zone.now
 name = 'Example Task2'
 user.tasks.create!(name: name,
-                  in_charge: 'Example User',
-                  time_limit: time_limit,
-                  status: 'incomplete',
-                  post_group_id: group.id)
+                   in_charge: 'Example User',
+                   time_limit: time_limit,
+                   status: 'incomplete',
+                   post_group_id: group.id)
 
 suzuki = User.find_by(name: '鈴木')
 group_name = '設計開発チーム'
